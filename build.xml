@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gambio" default="deploy">
+	<!-- Propriétés spécifiques à la contrib -->
+	<property name="build_root.dir" location=".."/>
+	<property name="common.dir" location="${build_root.dir}/common"/>
+
+	<!-- Propriétés et targets standards -->
+	<import file="${common.dir}/build-generic.xml"/>
+</project>
