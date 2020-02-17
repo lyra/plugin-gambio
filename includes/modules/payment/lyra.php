@@ -10,6 +10,8 @@
 
 // include BANKNAME API class
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_api.php');
+require_once (DIR_FS_CATALOG . 'includes/classes/lyra_request.php');
+require_once (DIR_FS_CATALOG . 'includes/classes/lyra_response.php');
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
 
 // include the admin configuration functions
@@ -64,7 +66,7 @@ class lyra {
         $this->code = 'lyra';
 
         // initialize title
-        $this->title = '<img src="'.DIR_WS_CATALOG.'images/###LOGO###" style="width: 100px; vertical-align: middle; border: none;" alt="Lyra Collect"> '. MODULE_PAYMENT_LYRA_TEXT_TITLE;
+        $this->title = MODULE_PAYMENT_LYRA_TEXT_TITLE;
 
         // initialize description
         $this->description  = '';
@@ -72,10 +74,10 @@ class lyra {
         $this->description .= '<br/><br/>';
 
         $this->description .= '<table class="infoBoxContent">';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . '</td><td><a href="https://www.lyra-network.com/" target="_blank"><b>Lyra network</b></a></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . '</td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . '</td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . '</td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ' : </td><td><a href="https://www.lyra-network.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ' : </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
         $this->description .= '</table>';
 
         $this->description .= '<br/>';
@@ -83,14 +85,14 @@ class lyra {
         $this->description .= '<hr />';
 
         // initialize enabled
-        $this->enabled = (MODULE_PAYMENT_LYRA_STATUS == '1');
+        $this->enabled = defined('MODULE_PAYMENT_LYRA_STATUS') && MODULE_PAYMENT_LYRA_STATUS == 'True';
 
         // initialize sort_order
-        $this->sort_order = MODULE_PAYMENT_LYRA_SORT_ORDER;
+        defined('MODULE_PAYMENT_LYRA_SORT_ORDER') ? $this->sort_order = MODULE_PAYMENT_LYRA_SORT_ORDER : $this->sort_order = '';
 
-        $this->form_action_url = MODULE_PAYMENT_LYRA_PLATFORM_URL;
+        defined('MODULE_PAYMENT_LYRA_PLATFORM_URL')? $this->form_action_url = MODULE_PAYMENT_LYRA_PLATFORM_URL : $this->form_action_url = '';
 
-        if ((int)MODULE_PAYMENT_LYRA_ORDER_STATUS > 0) {
+        if (defined('MODULE_PAYMENT_LYRA_ORDER_STATUS') && (int)MODULE_PAYMENT_LYRA_ORDER_STATUS > 0) {
             $this->order_status = MODULE_PAYMENT_LYRA_ORDER_STATUS;
         }
 
@@ -137,10 +139,8 @@ class lyra {
             }
 
             // check currency
-            $lyraApi = new LyraApi('###CONTRIB_ENCODING###'); // load Lyra Collect payment API
-
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY == 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
-            if(!$lyraApi->findCurrencyByAlphaCode($order->info['currency']) && !$lyraApi->findCurrencyByAlphaCode($defaultCurrency)) {
+            if(!LyraApi::findCurrencyByAlphaCode($order->info['currency']) && !LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
                 // currency is not supported, module is not available
                 $this->enabled = false;
             }
@@ -163,7 +163,8 @@ class lyra {
     {
         return array(
             'id' => $this->code,
-            'module' => str_replace('###LOGO###', '###LOGO2###', $this->title)
+            'module' => $this->title,
+            'logo_url' => xtc_href_link('images/lyra.png', '', 'SSL', false, false, false, true, true)
         );
     }
 
@@ -193,42 +194,44 @@ class lyra {
     {
         global $order, $xtPrice;
 
-        // load BANKNAME### payment API
-        $lyraApi = new LyraApi('###CONTRIB_ENCODING###');
+        // load Lyra Collect payment API
+        $lyraRequest = new LyraRequest();
 
         // admin configuration parameters
         $configParams = array(
             'site_id', 'key_test', 'key_prod', 'ctx_mode', 'platform_url', 'available_languages',
-            'capture_delay', 'validation_mode', 'payment_cards', 'redirect_enabled',
-            'redirect_success_timeout', 'redirect_success_message', 'redirect_error_timeout',
-            'redirect_error_message', 'return_mode'
+            'capture_delay', 'validation_mode', 'payment_cards', 'redirect_success_timeout',
+            'redirect_success_message', 'redirect_error_timeout', 'redirect_error_message', 'return_mode'
         );
 
         foreach ($configParams as $name) {
-            $lyraApi->set($name, constant('MODULE_PAYMENT_LYRA_' . strtoupper($name)));
+            $lyraRequest->set($name, constant('MODULE_PAYMENT_LYRA_' . strtoupper($name)));
         }
+
+        // Set redirection auto
+        $lyraRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_' . strtoupper('redirect_enabled')) === 'True'? 1 : 0);
 
         // get the shop language code
         $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
         $langData = xtc_db_fetch_array($query);
-        $lyraLanguage = $lyraApi->isSupportedLanguage($langData['code']) ?
+        $lyraLanguage = LyraApi::isSupportedLanguage($langData['code']) ?
         strtolower($langData['code']) :
         MODULE_PAYMENT_LYRA_LANGUAGE;
 
         // get the currency to use
         $currencyValue = $order->info['currency_value'];
-        $lyraCurrency = $lyraApi->findCurrencyByAlphaCode($order->info['currency']);
+        $lyraCurrency = LyraApi::findCurrencyByAlphaCode($order->info['currency']);
         if(!$lyraCurrency) {
             // currency is not supported, use the default shop currency
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY == 'true') ?
             LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
 
-            $lyraCurrency = $lyraApi->findCurrencyByAlphaCode($defaultCurrency);
+            $lyraCurrency = $lyraRequest->findCurrencyByAlphaCode($defaultCurrency);
             $currencyValue = 1;
         }
 
         // calculate amount ...
-        $total = round($order->info['total'] * $currencyValue, $xtPrice->get_decimal_places($lyraCurrency->alpha3));
+        $total = round($order->info['total'] * $currencyValue, $xtPrice->get_decimal_places($lyraCurrency->getAlpha3()));
 
         // activate 3ds ?
         $threedsMpi = null;
@@ -251,7 +254,7 @@ class lyra {
             'order_info' => 'session_id=' . session_id(),
 
             // misc data
-            'currency' => $lyraCurrency->num,
+            'currency' => $lyraCurrency->getNum(),
             'language' => $lyraLanguage,
             'threeds_mpi' => $threedsMpi,
             'url_return' => xtc_href_link(FILENAME_CHECKOUT_PROCESS, '', 'SSL'),
@@ -289,9 +292,9 @@ class lyra {
             $data['ship_to_zip'] = $order->delivery['postcode'];
         }
 
-        $lyraApi->setFromArray($data);
+        $lyraRequest->setFromArray($data);
 
-        return $lyraApi->getRequestFieldsHtml();
+        return $lyraRequest->getRequestHtmlFields();
     }
 
     /**
@@ -314,9 +317,8 @@ class lyra {
             if($fromServer) {
                 die($lyraResponse->getOutputForGateway('auth_fail'));
             } else {
-                $messageStack->add_session('header', MODULE_PAYMENT_LYRA_TECHNICAL_ERROR, 'error');
-
-                xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL', true));
+                $_SESSION[$this->code.'_error'] = MODULE_PAYMENT_LYRA_TECHNICAL_ERROR;
+                xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'payment_error=' . $this->code, 'SSL', true));
                 die();
             }
         }
@@ -372,11 +374,24 @@ class lyra {
             if($fromServer) {
                 die($lyraResponse->getOutputForGateway('payment_ko'));
             } else {
-                $messageStack->add_session('header', MODULE_PAYMENT_LYRA_PAYMENT_ERROR, 'error');
-                xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, '', 'SSL'));
+                $_SESSION[$this->code.'_error'] = MODULE_PAYMENT_LYRA_PAYMENT_ERROR;
+                xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_PAYMENT, 'payment_error=' . $this->code, 'SSL'));
                 die();
             }
         }
+    }
+
+    function get_error()
+    {
+        $error = false;
+        if(isset($_SESSION[$this->code.'_error'])) {
+            $error = array(
+                'error' => $_SESSION[$this->code.'_error']
+            );
+            unset($_SESSION[$this->code.'_error']);
+        }
+
+        return $error;
     }
 
     /**
@@ -478,7 +493,7 @@ class lyra {
     {
         // Ex: _install_query($key, $value, $group_id, $sort_order, $set_function=null, $use_function=null)
         // Gambio specific parameters
-        $this->_install_query('STATUS', '1', 6, 1, 'lyra_cfg_draw_pull_down_bools(', 'lyra_get_bool_title');
+        $this->_install_query('STATUS', 'True', 6, 1, "gm_cfg_select_option(array(\'True\', \'False\'), ", 'lyra_get_bool_title');
         $this->_install_query('SORT_ORDER', '0', 6, 2);
         $this->_install_query('ALLOWED', '', 6, 3 );
         $this->_install_query('ZONE', '0', 6, 4, 'xtc_cfg_pull_down_zone_classes(', 'xtc_get_zone_class_title');
@@ -502,7 +517,7 @@ class lyra {
         $this->_install_query('AMOUNT_MAX', '', 6, 31);
 
         // gateway return parameters
-        $this->_install_query('REDIRECT_ENABLED', '0', 6, 40, 'lyra_cfg_draw_pull_down_bools(', 'lyra_get_bool_title');
+        $this->_install_query('REDIRECT_ENABLED', 'False', 6, 40, "gm_cfg_select_option(array(\'True\', \'False\'), ", 'lyra_get_bool_title');
         $this->_install_query('REDIRECT_SUCCESS_TIMEOUT', 5, 6, 41);
         $this->_install_query('REDIRECT_SUCCESS_MESSAGE', 'Redirection to shop in a few seconds...', 6, 42);
         $this->_install_query('REDIRECT_ERROR_TIMEOUT', 5, 6, 43);
@@ -570,15 +585,11 @@ class lyra {
      */
     function _guess_order_id()
     {
-        $sql = "SELECT MAX(orders_id) FROM " . TABLE_ORDERS;
+        $order_query = xtc_db_query("SELECT MAX(orders_id) FROM " . TABLE_ORDERS);
+        $order_data = xtc_db_fetch_array($order_query);
+        $order_id = reset($order_data);
 
-        $res = xtc_db_query($sql);
-
-        if(xtc_db_num_rows($res) == 0) {
-            return 0;
-        } else {
-            return mysql_result($res, 0, 0) + 1;
-        }
+        return $order_id? $order_id : 0;
     }
 
     /**

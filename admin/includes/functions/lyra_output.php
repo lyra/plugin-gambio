@@ -15,14 +15,12 @@
 global $lyra_supported_languages, $lyra_supported_cards;
 
 // load Lyra Collect payment API
-$lyraApi = new LyraApi('###CONTRIB_ENCODING###');
-
-$lyra_supported_languages = $lyraApi->getSupportedLanguages();
-$lyra_supported_cards = $lyraApi->getSupportedCardTypes();
+$lyra_supported_languages = LyraApi::getSupportedLanguages();
+$lyra_supported_cards = LyraApi::getSupportedCardTypes();
 
 function lyra_output_string($string)
 {
-    return htmlspecialchars($string, ENT_COMPAT | ENT_HTML401, '###CONTRIB_ENCODING###');
+    return htmlspecialchars($string, ENT_COMPAT | ENT_HTML401, 'UTF-8');
 }
 
 function lyra_get_bool_title($value)
@@ -139,9 +137,9 @@ function lyra_cfg_draw_pull_down_bools($value='', $name)
     $name = 'configuration[' . lyra_output_string($name) . ']';
     if (empty($value) && isset($GLOBALS[$name])) $value = stripslashes($GLOBALS[$name]);
 
-    $bools = array('1', '0');
+    $bools = array('True', 'False');
 
-    $field = '';
+    $field = '<br>';
     foreach ($bools as $bool) {
         $field .= '<input type="radio" name="' . $name . '" value="' . $bool . '"';
         if ($value == $bool) {
@@ -206,7 +204,7 @@ function lyra_cfg_draw_pull_down_multi_langs($value='', $name)
 
     $langs = empty($value) ? array() : explode(';', $value);
 
-    $field = '<select name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessLangs()">';
+    $field = '<select style="height: initial;" size="5" name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessLangs()">';
     foreach ($lyra_supported_languages as $key => $label) {
         $field .= '<option value="' . $key . '"';
         if (in_array($key, $langs)) {
@@ -222,7 +220,7 @@ function lyra_cfg_draw_pull_down_multi_langs($value='', $name)
     <script type="text/javascript">
         function lyraProcessLangs()
         {
-            var elt = document.forms['modules'].elements['$name'];
+            var elt = document.forms['configuration-box-form'].elements['$name'];
 
             var result = '';
             for (var i=0; i < elt.length; i++) {
@@ -233,7 +231,7 @@ function lyra_cfg_draw_pull_down_multi_langs($value='', $name)
                 }
              }
 
-             document.forms['modules'].elements['$fieldName'].value = result;
+             document.forms['configuration-box-form'].elements['$fieldName'].value = result;
         }
     </script>
 JSCODE;
@@ -252,7 +250,7 @@ function lyra_cfg_draw_pull_down_cards($value='', $name)
 
     $cards = empty($value) ? array() : explode(';', $value);
 
-    $field = '<select name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessCards()">';
+    $field = '<select style="height: initial;" size="5" name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessCards()">';
     foreach ($lyra_supported_cards as $key => $label) {
         $field .= '<option value="' . $key . '"';
         if (in_array($key, $cards)) {
@@ -268,7 +266,7 @@ function lyra_cfg_draw_pull_down_cards($value='', $name)
     <script type="text/javascript">
         function lyraProcessCards()
         {
-            var elt = document.forms['modules'].elements['$name'];
+            var elt = document.forms['configuration-box-form'].elements['$name'];
 
             var result = '';
             for (var i=0; i < elt.length; i++) {
@@ -279,7 +277,7 @@ function lyra_cfg_draw_pull_down_cards($value='', $name)
                 }
              }
 
-             document.forms['modules'].elements['$fieldName'].value = result;
+             document.forms['configuration-box-form'].elements['$fieldName'].value = result;
         }
     </script>
 JSCODE;
@@ -293,7 +291,9 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
     $name = lyra_output_string($name);
 
     $fieldName = 'configuration[' . $name . ']';
-    if (empty($value) && isset($GLOBALS[$fieldName])) $value = stripslashes($GLOBALS[$fieldName]);
+    if (empty($value) && isset($GLOBALS[$fieldName])) $value = $GLOBALS[$fieldName];
+
+    $value = stripslashes($value);
 
     $options = empty($value) ? array() : json_decode($value, true);
 
@@ -361,7 +361,7 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
             }
         };
 
-        jQuery(document.forms['modules']).submit(function(event) {
+        jQuery(document.forms['configuration-box-form']).submit(function(event) {
               var options = {};
 
             jQuery('#$name' + '_table tbody tr td input[type=text]').each(function() {
@@ -374,7 +374,7 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
                   options = lyraFillArray(options, keys, jQuery(this).val());
             });
 
-            document.forms['modules'].elements['$fieldName'].value = JSON.stringify(options);
+            document.forms['configuration-box-form'].elements['$fieldName'].value = JSON.stringify(options);
               return true;
         });
 
