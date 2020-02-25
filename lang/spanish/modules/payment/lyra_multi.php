@@ -94,3 +94,5 @@ define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Periodo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "Primer pago");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Agregar");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Eliminar");
+
+define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATENCIÓN: La activación de la función de pago en cuotas está sujeta al acuerdo previo de Societé Générale.<br />Si habilita esta función cuando no tiene la opción asociada, ocurrirá un error 10000 – INSTALLMENTS_NOT_ALLOWED o 07 - PAYMENT_CONFIG y el comprador no podrá pagar.");

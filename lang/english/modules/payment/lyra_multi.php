@@ -94,3 +94,5 @@ define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Period");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1st payment");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Add");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Delete");
+
+define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATTENTION: The payment in installments feature activation is subject to the prior agreement of Société Générale.<br />If you enable this feature while you have not the associated option, an error 10000 – INSTALLMENTS_NOT_ALLOWED or 07 - PAYMENT_CONFIG will occur and the buyer will not be able to pay.");

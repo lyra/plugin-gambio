@@ -91,3 +91,5 @@ define('MODULE_PAYMENT_LYRA_OPTIONS_PERIOD', "Période");
 define('MODULE_PAYMENT_LYRA_OPTIONS_FIRST', "1er paiement");
 define('MODULE_PAYMENT_LYRA_OPTIONS_ADD', "Ajouter");
 define('MODULE_PAYMENT_LYRA_OPTIONS_DELETE', "Supprimer");
+
+define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATTENTION: L'activation de la fonctionnalité de paiement en nfois est soumise à accord préalable de Société Générale.<br />Si vous activez cette fonctionnalité alors que vous ne disposez pas de cette option, une erreur 10000 – INSTALLMENTS_NOT_ALLOWED ou 07 - PAYMENT_CONFIG sera générée et l'acheteur sera dans l'incapacité de payer.");

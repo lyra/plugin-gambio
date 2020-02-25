@@ -69,7 +69,8 @@ class lyra_multi {
         $this->title = MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE;
 
         // initialize description
-        $this->description  = '';
+        $this->description  = '<p style="background-color: #FFFFE0; border: 1px solid #E6DB55; font-size: 13px;  margin: 0 0 20px; padding: 10px;">' .
+            MODULE_PAYMENT_LYRA_MULTI_WARNING . '</p>';
         $this->description .= '<b>' . MODULE_PAYMENT_LYRA_MODULE_INFORMATION . '</b>';
         $this->description .= '<br/><br/>';
 
