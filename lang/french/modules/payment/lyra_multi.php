@@ -34,6 +34,8 @@ define('MODULE_PAYMENT_LYRA_MULTI_KEY_PROD_TITLE', "Clé en mode production");
 define('MODULE_PAYMENT_LYRA_MULTI_KEY_PROD_DESC', "Clé fournie par Lyra Collect (disponible sur le Back Office Lyra Expert après passage en production).");
 define('MODULE_PAYMENT_LYRA_MULTI_CTX_MODE_TITLE', "Mode");
 define('MODULE_PAYMENT_LYRA_MULTI_CTX_MODE_DESC', "Mode de fonctionnement du module.");
+define('MODULE_PAYMENT_LYRA_MULTI_SIGN_ALGO_TITLE', "Algorithme de signature");
+define('MODULE_PAYMENT_LYRA_SIGN_ALGO_DESC', "Algorithme utilisé pour calculer la signature du formulaire de paiement. L'algorithme sélectionné doit être le même que celui configuré sur le Back Office Lyra Expert.");
 define('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL_TITLE', "URL de la page de paiement");
 define('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL_DESC', "URL vers laquelle l'acheteur sera redirigé pour le paiement.");
 

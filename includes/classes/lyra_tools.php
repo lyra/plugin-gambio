@@ -18,6 +18,7 @@ class lyra_tools
     private static $KEY_TEST = '1111111111111111';
     private static $KEY_PROD = '2222222222222222';
     private static $CTX_MODE = 'TEST';
+    private static $SIGN_ALGO = 'SHA-256';
     private static $LANGUAGE = 'en';
     private static $SUPPORT_EMAIL = 'support-ecommerce@lyra-collect.com';
 

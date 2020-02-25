@@ -152,6 +152,44 @@ function lyra_cfg_draw_pull_down_bools($value='', $name)
     return $field;
 }
 
+function lyra_cfg_draw_pull_down_sign_algos($value='', $name)
+{
+    $name = 'configuration[' . lyra_output_string($name) . ']';
+
+    if (empty($value) && isset($GLOBALS[$name])) {
+        $value = stripslashes($GLOBALS[$name]);
+    }
+
+    $algos = array(
+        'SHA-1' => 'SHA-1',
+        'SHA-256' => 'HMAC-SHA-256'
+    );
+
+    $field = '<select name="' . $name . '">';
+    foreach ($algos as $code => $algo) {
+        $field .= '<option value="' . $code . '"';
+        if ($value == $code) {
+            $field .= ' selected="selected"';
+        }
+
+        $field .= '>' . lyra_output_string($algo) . '</option>';
+    }
+
+    $field .= '</select>';
+
+    return $field;
+}
+
+function lyra_get_sign_algo_title($value)
+{
+    $algos = array(
+        'SHA-1' => 'SHA-1',
+        'SHA-256' => 'HMAC-SHA-256'
+    );
+
+    return $algos[$value];
+}
+
 function lyra_cfg_draw_pull_down_validation_modes($value='', $name)
 {
     $name = 'configuration[' . lyra_output_string($name) . ']';

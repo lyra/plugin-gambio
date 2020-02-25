@@ -199,7 +199,7 @@ class lyra {
 
         // admin configuration parameters
         $configParams = array(
-            'site_id', 'key_test', 'key_prod', 'ctx_mode', 'platform_url', 'available_languages',
+            'site_id', 'key_test', 'key_prod', 'ctx_mode', 'sign_algo', 'platform_url', 'available_languages',
             'capture_delay', 'validation_mode', 'payment_cards', 'redirect_success_timeout',
             'redirect_success_message', 'redirect_error_timeout', 'redirect_error_message', 'return_mode'
         );
@@ -308,7 +308,8 @@ class lyra {
             $_REQUEST,
             MODULE_PAYMENT_LYRA_CTX_MODE,
             MODULE_PAYMENT_LYRA_KEY_TEST,
-            MODULE_PAYMENT_LYRA_KEY_PROD
+            MODULE_PAYMENT_LYRA_KEY_PROD,
+            MODULE_PAYMENT_LYRA_SIGN_ALGO
             );
         $fromServer = $lyraResponse->get('hash');
 
@@ -503,7 +504,8 @@ class lyra {
         $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
         $this->_install_query('KEY_PROD', lyra_tools::getDefault('KEY_PROD'), 6, 12);
         $this->_install_query('CTX_MODE', lyra_tools::getDefault('CTX_MODE'), 6, 13, "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),");
-        $this->_install_query('PLATFORM_URL', lyra_tools::getDefault('GATEWAY_URL'), 6, 14);
+        $this->_install_query('SIGN_ALGO', lyra_tools::getDefault('SIGN_ALGO'),6, 14, 'lyra_cfg_draw_pull_down_sign_algos(', 'lyra_get_sign_algo_title');
+        $this->_install_query('PLATFORM_URL', lyra_tools::getDefault('GATEWAY_URL'), 6, 15);
 
         $this->_install_query('LANGUAGE', lyra_tools::getDefault('LANGUAGE'), 6, 21, 'lyra_cfg_draw_pull_down_langs(', 'lyra_get_lang_title');
         $this->_install_query('AVAILABLE_LANGUAGES', '', 6, 22, 'lyra_cfg_draw_pull_down_multi_langs(', 'lyra_get_multi_lang_title');
@@ -554,6 +556,7 @@ class lyra {
             'MODULE_PAYMENT_LYRA_KEY_TEST',
             'MODULE_PAYMENT_LYRA_KEY_PROD',
             'MODULE_PAYMENT_LYRA_CTX_MODE',
+            'MODULE_PAYMENT_LYRA_SIGN_ALGO',
             'MODULE_PAYMENT_LYRA_PLATFORM_URL',
 
             'MODULE_PAYMENT_LYRA_LANGUAGE',
