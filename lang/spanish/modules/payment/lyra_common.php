@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Lyra Network.
- * This file is part of PayZen plugin for Gambio. See COPYING.md for license details.
+ * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
  *
  * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
