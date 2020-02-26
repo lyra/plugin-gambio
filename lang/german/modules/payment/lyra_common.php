@@ -8,6 +8,8 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL v2)
  */
 
+require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
+
 ## CATALOG MESSAGES ##
 define('MODULE_PAYMENT_LYRA_TECHNICAL_ERROR', "Ein Fehler ist während dem Zahlungsvorgang unterlaufen.");
 define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Ihre Bestellung konnte nicht bestätigt werden.  Die Zahlung wurde nicht angenommen.");

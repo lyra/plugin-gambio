@@ -33,7 +33,7 @@ define('MODULE_PAYMENT_LYRA_KEY_PROD_DESC', "Clave proporcionada por Lyra Collec
 define('MODULE_PAYMENT_LYRA_CTX_MODE_TITLE', "Modo");
 define('MODULE_PAYMENT_LYRA_CTX_MODE_DESC', "El modo de contexto de este módulo.");
 define('MODULE_PAYMENT_LYRA_SIGN_ALGO_TITLE', "Algoritmo de firma");
-define('MODULE_PAYMENT_LYRA_SIGN_ALGO_DESC', "Algoritmo usado para calcular la firma del formulario de pago. El algoritmo seleccionado debe ser el mismo que el configurado en el Back Office Lyra Expert.");
+define('MODULE_PAYMENT_LYRA_SIGN_ALGO_DESC', "Algoritmo usado para calcular la firma del formulario de pago. El algoritmo seleccionado debe ser el mismo que el configurado en el Back Office Lyra Expert." . (! lyra_tools::$lyra_plugin_features['shatwo'] ? "<br /><b>El algoritmo HMAC-SHA-256 no se debe activar si aún no está disponible en el Back Office Lyra Expert, la función estará disponible pronto.</b>" : ''));
 define('MODULE_PAYMENT_LYRA_PLATFORM_URL_TITLE', "URL de página de pago");
 define('MODULE_PAYMENT_LYRA_PLATFORM_URL_DESC', "Enlace a la página de pago.");
 

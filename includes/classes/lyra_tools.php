@@ -26,6 +26,15 @@ class lyra_tools
     private static $PLUGIN_VERSION = '2.0.0';
     private static $GATEWAY_VERSION = 'V2';
 
+    public static $lyra_plugin_features = array(
+        'qualif' => false,
+        'prodfaq' => false,
+        'restrictmulti' => false,
+        'shatwo' => true,
+
+        'multi' => true,
+    );
+
     public static function getDefault($name)
     {
         if (! is_string($name)) {

@@ -325,7 +325,7 @@ class lyra {
         }
 
         // messages to display on payment result page
-        if(MODULE_PAYMENT_LYRA_CTX_MODE == 'TEST') {
+        if(lyra_tools::$lyra_plugin_features['prodfaq'] && MODULE_PAYMENT_LYRA_CTX_MODE == 'TEST') {
             $messageStack->add_session('header', MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO . '<a href="###PRODFAQ_URL###" target="_blank">###PRODFAQ_URL###</a>', 'success');
         }
 
@@ -501,9 +501,15 @@ class lyra {
 
         // gateway access parameters
         $this->_install_query('SITE_ID', lyra_tools::getDefault('SITE_ID'), 6, 10);
-        $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
+
+        $function = "xtc_cfg_select_option(array(\'PRODUCTION\'),";
+        if (! lyra_tools::$payzen_plugin_features['qualif']) {
+            $function = "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),";
+            $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
+        }
+
         $this->_install_query('KEY_PROD', lyra_tools::getDefault('KEY_PROD'), 6, 12);
-        $this->_install_query('CTX_MODE', lyra_tools::getDefault('CTX_MODE'), 6, 13, "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),");
+        $this->_install_query('CTX_MODE', lyra_tools::getDefault('CTX_MODE'), 6, 13,  $function);
         $this->_install_query('SIGN_ALGO', lyra_tools::getDefault('SIGN_ALGO'),6, 14, 'lyra_cfg_draw_pull_down_sign_algos(', 'lyra_get_sign_algo_title');
         $this->_install_query('PLATFORM_URL', lyra_tools::getDefault('GATEWAY_URL'), 6, 15);
 
@@ -546,37 +552,42 @@ class lyra {
      */
     function keys()
     {
-        return array(
-            'MODULE_PAYMENT_LYRA_STATUS',
-            'MODULE_PAYMENT_LYRA_SORT_ORDER',
-            'MODULE_PAYMENT_LYRA_ALLOWED',
-            'MODULE_PAYMENT_LYRA_ZONE',
+        $keys = array();
+        $keys[] = 'MODULE_PAYMENT_LYRA_STATUS';
+        $keys[] = 'MODULE_PAYMENT_LYRA_SORT_ORDER';
+        $keys[] = 'MODULE_PAYMENT_LYRA_ALLOWED';
+        $keys[] = 'MODULE_PAYMENT_LYRA_ZONE';
 
-            'MODULE_PAYMENT_LYRA_SITE_ID',
-            'MODULE_PAYMENT_LYRA_KEY_TEST',
-            'MODULE_PAYMENT_LYRA_KEY_PROD',
-            'MODULE_PAYMENT_LYRA_CTX_MODE',
-            'MODULE_PAYMENT_LYRA_SIGN_ALGO',
-            'MODULE_PAYMENT_LYRA_PLATFORM_URL',
+        $keys[] = 'MODULE_PAYMENT_LYRA_SITE_ID';
 
-            'MODULE_PAYMENT_LYRA_LANGUAGE',
-            'MODULE_PAYMENT_LYRA_AVAILABLE_LANGUAGES',
-            'MODULE_PAYMENT_LYRA_CAPTURE_DELAY',
-            'MODULE_PAYMENT_LYRA_VALIDATION_MODE',
-            'MODULE_PAYMENT_LYRA_PAYMENT_CARDS',
-            'MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT',
+        if (! lyra_tools::$payzen_plugin_features['qualif']) {
+            $keys[] = 'MODULE_PAYMENT_LYRA_KEY_TEST';
+        }
 
-            'MODULE_PAYMENT_LYRA_AMOUNT_MIN',
-            'MODULE_PAYMENT_LYRA_AMOUNT_MAX',
+        $keys[] = 'MODULE_PAYMENT_LYRA_KEY_PROD';
+        $keys[] = 'MODULE_PAYMENT_LYRA_CTX_MODE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_SIGN_ALGO';
+        $keys[] = 'MODULE_PAYMENT_LYRA_PLATFORM_URL';
 
-            'MODULE_PAYMENT_LYRA_REDIRECT_ENABLED',
-            'MODULE_PAYMENT_LYRA_REDIRECT_SUCCESS_TIMEOUT',
-            'MODULE_PAYMENT_LYRA_REDIRECT_SUCCESS_MESSAGE',
-            'MODULE_PAYMENT_LYRA_REDIRECT_ERROR_TIMEOUT',
-            'MODULE_PAYMENT_LYRA_REDIRECT_ERROR_MESSAGE',
-            'MODULE_PAYMENT_LYRA_RETURN_MODE',
-            'MODULE_PAYMENT_LYRA_ORDER_STATUS'
-        );
+        $keys[] = 'MODULE_PAYMENT_LYRA_LANGUAGE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_AVAILABLE_LANGUAGES';
+        $keys[] = 'MODULE_PAYMENT_LYRA_CAPTURE_DELAY';
+        $keys[] = 'MODULE_PAYMENT_LYRA_VALIDATION_MODE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_PAYMENT_CARDS';
+        $keys[] = 'MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT';
+
+        $keys[] = 'MODULE_PAYMENT_LYRA_AMOUNT_MIN';
+        $keys[] = 'MODULE_PAYMENT_LYRA_AMOUNT_MAX';
+
+        $keys[] = 'MODULE_PAYMENT_LYRA_REDIRECT_ENABLED';
+        $keys[] = 'MODULE_PAYMENT_LYRA_REDIRECT_SUCCESS_TIMEOUT';
+        $keys[] = 'MODULE_PAYMENT_LYRA_REDIRECT_SUCCESS_MESSAGE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_REDIRECT_ERROR_TIMEOUT';
+        $keys[] = 'MODULE_PAYMENT_LYRA_REDIRECT_ERROR_MESSAGE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_RETURN_MODE';
+        $keys[] = 'MODULE_PAYMENT_LYRA_ORDER_STATUS';
+
+        return $keys;
     }
 
     /**
