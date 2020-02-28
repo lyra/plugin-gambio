@@ -1,6 +1,2 @@
-2.0.0
-- Enable signature algorithm selection (SHA-1 or HMAC-SHA-256).
--[technical] Manage enabled/disabled features by plugin variant.
-
-1.0.0, 2016
-Initial version.
+2.0.0, 2020-03-16:
+- New plugin for Gambio 3.x.

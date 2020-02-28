@@ -1,4 +1,4 @@
-Copyright © 2016-2020 Lyra Network.
+Copyright © 2020 Lyra Network.
 
 Lyra Collect for Gambio is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
