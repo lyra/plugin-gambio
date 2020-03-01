@@ -163,7 +163,7 @@ class lyra {
     {
         return array(
             'id' => $this->code,
-            'module' => $this->title,
+            'module' => MODULE_PAYMENT_LYRA_SHORT_TITLE,
             'logo_url' => xtc_href_link('images/lyra.png', '', 'SSL', false, false, false, true, true)
         );
     }

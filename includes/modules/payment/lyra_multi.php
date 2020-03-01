@@ -211,7 +211,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             $selection = array(
                 'id' => $this->code,
-                'module' => $this->title,
+                'module' => MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE,
                 'logo_url' => xtc_href_link('images/lyra_multi.png', '', 'SSL', false, false, false, true, true)
             );
 

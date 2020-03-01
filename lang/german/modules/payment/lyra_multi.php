@@ -13,7 +13,7 @@ include_once 'lyra_common.php';
 ## CATALOG MESSAGES ##
 
 define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Zahlung in mehrere Optionen");
-//define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Lyra Collect - Ratenzahlung");
+define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Ratenzahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Modulstatus");

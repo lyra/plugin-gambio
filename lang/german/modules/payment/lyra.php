@@ -11,7 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Zahlung mit EC-/Kreditkarte");
+define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Standardzahlung");
+define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Zahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Modulstatus");

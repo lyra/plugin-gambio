@@ -12,7 +12,7 @@ include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
 define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Pago en cuotas");
-//define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Lyra Collect - Payment in several times");
+define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Pago con tarjeta de crédito en cuotas");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Estado del módulo");
