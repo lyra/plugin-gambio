@@ -14,7 +14,7 @@
 
 global $lyra_supported_languages, $lyra_supported_cards;
 
-// load Lyra Collect payment API
+// Load Lyra Collect payment API.
 $lyra_supported_languages = LyraApi::getSupportedLanguages();
 $lyra_supported_cards = LyraApi::getSupportedCardTypes();
 
@@ -132,7 +132,7 @@ function lyra_get_multi_options($value)
     return $field;
 }
 
-function lyra_cfg_draw_pull_down_bools($value='', $name)
+function lyra_cfg_draw_pull_down_bools($value = '', $name)
 {
     $name = 'configuration[' . lyra_output_string($name) . ']';
     if (empty($value) && isset($GLOBALS[$name])) $value = stripslashes($GLOBALS[$name]);
@@ -142,7 +142,7 @@ function lyra_cfg_draw_pull_down_bools($value='', $name)
     $field = '<br>';
     foreach ($bools as $bool) {
         $field .= '<input type="radio" name="' . $name . '" value="' . $bool . '"';
-        if ($value == $bool) {
+        if ($value === $bool) {
             $field .= ' checked="checked"';
         }
 
@@ -152,7 +152,7 @@ function lyra_cfg_draw_pull_down_bools($value='', $name)
     return $field;
 }
 
-function lyra_cfg_draw_pull_down_sign_algos($value='', $name)
+function lyra_cfg_draw_pull_down_sign_algos($value = '', $name)
 {
     $name = 'configuration[' . lyra_output_string($name) . ']';
 
@@ -168,7 +168,7 @@ function lyra_cfg_draw_pull_down_sign_algos($value='', $name)
     $field = '<select name="' . $name . '">';
     foreach ($algos as $code => $algo) {
         $field .= '<option value="' . $code . '"';
-        if ($value == $code) {
+        if ($value === $code) {
             $field .= ' selected="selected"';
         }
 
@@ -190,7 +190,7 @@ function lyra_get_sign_algo_title($value)
     return $algos[$value];
 }
 
-function lyra_cfg_draw_pull_down_validation_modes($value='', $name)
+function lyra_cfg_draw_pull_down_validation_modes($value = '', $name)
 {
     $name = 'configuration[' . lyra_output_string($name) . ']';
 
@@ -200,7 +200,7 @@ function lyra_cfg_draw_pull_down_validation_modes($value='', $name)
     $field = '<select name="' . $name . '">';
     foreach ($modes as $mode) {
         $field .= '<option value="' . $mode . '"';
-        if ($value == $mode) {
+        if ($value === $mode) {
             $field .= ' selected="selected"';
         }
 
@@ -212,7 +212,7 @@ function lyra_cfg_draw_pull_down_validation_modes($value='', $name)
     return $field;
 }
 
-function lyra_cfg_draw_pull_down_langs($value='', $name)
+function lyra_cfg_draw_pull_down_langs($value = '', $name)
 {
     global $lyra_supported_languages;
 
@@ -222,7 +222,7 @@ function lyra_cfg_draw_pull_down_langs($value='', $name)
     $field = '<select name="' . $name . '">';
     foreach ($lyra_supported_languages as $key => $label) {
         $field .= '<option value="' . $key . '"';
-        if ($value == $key) {
+        if ($value === $key) {
             $field .= ' selected="selected"';
         }
 
@@ -233,7 +233,7 @@ function lyra_cfg_draw_pull_down_langs($value='', $name)
     return $field;
 }
 
-function lyra_cfg_draw_pull_down_multi_langs($value='', $name)
+function lyra_cfg_draw_pull_down_multi_langs($value = '', $name)
 {
     global $lyra_supported_languages;
 
@@ -263,7 +263,7 @@ function lyra_cfg_draw_pull_down_multi_langs($value='', $name)
             var result = '';
             for (var i=0; i < elt.length; i++) {
                 if (elt[i].selected) {
-                    if (result != '') result += ';';
+                    if (result !== '') result += ';';
 
                      result += elt[i].value;
                 }
@@ -279,7 +279,7 @@ JSCODE;
     return $field;
 }
 
-function lyra_cfg_draw_pull_down_cards($value='', $name)
+function lyra_cfg_draw_pull_down_cards($value = '', $name)
 {
     global $lyra_supported_cards;
 
@@ -307,9 +307,9 @@ function lyra_cfg_draw_pull_down_cards($value='', $name)
             var elt = document.forms['configuration-box-form'].elements['$name'];
 
             var result = '';
-            for (var i=0; i < elt.length; i++) {
-                if(elt[i].selected) {
-                    if (result != '') result += ';';
+            for (var i = 0; i < elt.length; i++) {
+                if (elt[i].selected) {
+                    if (result !== '') result += ';';
 
                      result += elt[i].value;
                 }
@@ -324,7 +324,7 @@ JSCODE;
     return $field;
 }
 
-function lyra_cfg_draw_table_multi_options($value='', $name)
+function lyra_cfg_draw_table_multi_options($value = '', $name)
 {
     $name = lyra_output_string($name);
 
@@ -362,7 +362,7 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
                         lyraAddOption("' . $name . '");
                      });';
 
-    // add already inserted lines
+    // Add already inserted lines.
     if (!empty($options)) {
         foreach ($options as $code => $option) {
             $field .= "\n" . 'lyraAddOption("' . $name . '", "' . $code . '", ' . json_encode($option) . ');' . "\n";
@@ -375,22 +375,22 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
     $field .= <<<JSCODE
         var JSON = JSON || {};
 
-        // implement JSON.stringify serialization
+        // Implement JSON.stringify serialization.
         JSON.stringify || function(obj) {
             var t = typeof (obj);
-            if (t != "object" || obj === null) {
-                // simple data type
-                if (t == "string") obj = '"' + obj + '"';
+            if (t !== "object" || obj === null) {
+                // Simple data type.
+                if (t === "string") obj = '"' + obj + '"';
                 return String(obj);
             } else {
-                // recurse array or object
-                var n, v, json = [], arr = (obj && obj.constructor == Array);
+                // Recurse array or object.
+                var n, v, json = [], arr = (obj && obj.constructor === Array);
 
                 for (n in obj) {
                     v = obj[n]; t = typeof(v);
 
-                    if (t == "string") v = '"'+v+'"';
-                    else if (t == "object" && v !== null) v = JSON.stringify(v);
+                    if (t === "string") v = '"' + v + '"';
+                    else if (t === "object" && v !== null) v = JSON.stringify(v);
 
                     json.push((arr ? "" : '"' + n + '":') + String(v));
                 }
@@ -421,8 +421,8 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
             if (keys.length > 0) {
                 var key = keys[0];
 
-                if (keys.length == 1) {
-                    // it's a leaf, let's set the value
+                if (keys.length === 1) {
+                    // It's a leaf, let's set the value.
                     arr[key] = val;
                 } else {
                     keys.shift();
@@ -439,13 +439,13 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
 
         function lyraAddOption(name, key, record)
         {
-            if (jQuery('#' + name + '_table tbody tr').length == 1) {
+            if (jQuery('#' + name + '_table tbody tr').length === 1) {
                 jQuery('#' + name + '_btn').css('display', 'none');
                 jQuery('#' + name + '_table').css('display', '');
             }
 
             if (!key && !record) {
-                // new line, generate key and use empty record
+                // New line, generate key and use empty record.
                 key = new Date().getTime();
                 record = { label: "", min_amount: "", max_amount: "", contract: "", count: "", period: "", first: "" };
             }
@@ -470,7 +470,7 @@ function lyra_cfg_draw_table_multi_options($value='', $name)
         {
             jQuery('#' + name + '_line_' + key).remove();
 
-            if (jQuery('#' + name + '_table tbody tr').length == 1) {
+            if (jQuery('#' + name + '_table tbody tr').length === 1) {
                 jQuery('#' + name + '_btn').css('display', '');
                 jQuery('#' + name + '_table').css('display', 'none');
             }
