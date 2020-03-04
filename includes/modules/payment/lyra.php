@@ -3,7 +3,7 @@
  * Copyright © Lyra Network.
  * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
  *
- * @author    Lyra Network (https://www.lyra-network.com/)
+ * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL v2)
  */
@@ -62,10 +62,10 @@ class lyra {
     {
         global $order;
 
-        // Iitialize code.
+        // Initialize code.
         $this->code = 'lyra';
 
-        // initialize title
+        // Initialize title
         $this->title = MODULE_PAYMENT_LYRA_TEXT_TITLE;
 
         // Initialize description.
@@ -74,7 +74,7 @@ class lyra {
         $this->description .= '<br/><br/>';
 
         $this->description .= '<table class="infoBoxContent">';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ' : </td><td><a href="https://www.lyra-network.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ' : </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
         $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ' : </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
         $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
         $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
@@ -227,7 +227,7 @@ class lyra {
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
             LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
 
-            $lyraCurrency = $lyraRequest->findCurrencyByAlphaCode($defaultCurrency);
+            $lyraCurrency = LyraApi::findCurrencyByAlphaCode($defaultCurrency);
             $currencyValue = 1;
         }
 
@@ -252,7 +252,7 @@ class lyra {
             'amount' => $lyraCurrency->convertAmountToInteger($total),
             'order_id' => $this->_guess_order_id(),
             'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $version . '/' . PHP_VERSION,
-            'order_info' => 'session_id=' . session_id(),
+            'order_info' => 'session_id=' . session_id() . '&use_cookies=' . ini_get('session.use_cookies') . '&session_cache_limiter=' . session_cache_limiter(),
 
             // Misc data.
             'currency' => $lyraCurrency->getNum(),
@@ -288,8 +288,6 @@ class lyra {
             }
 
             $data['ship_to_country'] = $countryCode;
-
-            //$data['ship_to_country'] = $order->delivery['country']['iso_code_2'];
             $data['ship_to_zip'] = $order->delivery['postcode'];
         }
 
@@ -303,10 +301,9 @@ class lyra {
      */
     function before_process()
     {
-        global $order, $lyraResponse, $messageStack;
+        global $order, $lyraResponse, $messageStack, $fromServer;
 
-        $data = MODULE_PAYMENT_LYRA_RETURN_MODE === 'GET' ? $_GET : $_POST;
-        logResult(print_r($data, true));
+        $data = !$fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
         $lyraResponse = new LyraResponse(
             $data,
             MODULE_PAYMENT_LYRA_CTX_MODE,
@@ -314,7 +311,6 @@ class lyra {
             MODULE_PAYMENT_LYRA_KEY_PROD,
             MODULE_PAYMENT_LYRA_SIGN_ALGO
         );
-        $fromServer = $lyraResponse->get('hash');
 
         // Check authenticity.
         if (!$lyraResponse->isAuthentified()) {
@@ -403,11 +399,9 @@ class lyra {
      */
     function after_process()
     {
-        global $lyraResponse, $messageStack;
+        global $lyraResponse, $messageStack, $fromServer;
 
         // This function is called only when payment was successful and the order is not registered yet.
-
-        $fromServer = $lyraResponse->get('hash');
 
         // Reset cart to allow new checkout process.
         $_SESSION['cart']->reset(true);
@@ -486,7 +480,7 @@ class lyra {
         $query .= isset($set_function) ? ", '" . $set_function . "'" : "";
         $query .= isset($use_function) ? ", '" . $use_function . "'" : "";
         $query .= ");";
-        // Execute;.
+        // Execute.
         xtc_db_query($query);
     }
 
@@ -506,7 +500,7 @@ class lyra {
         $this->_install_query('SITE_ID', lyra_tools::getDefault('SITE_ID'), 6, 10);
 
         $function = "xtc_cfg_select_option(array(\'PRODUCTION\'),";
-        if (! lyra_tools::$payzen_plugin_features['qualif']) {
+        if (! lyra_tools::$lyra_plugin_features['qualif']) {
             $function = "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),";
             $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
         }
@@ -563,7 +557,7 @@ class lyra {
 
         $keys[] = 'MODULE_PAYMENT_LYRA_SITE_ID';
 
-        if (! lyra_tools::$payzen_plugin_features['qualif']) {
+        if (! lyra_tools::$lyra_plugin_features['qualif']) {
             $keys[] = 'MODULE_PAYMENT_LYRA_KEY_TEST';
         }
 

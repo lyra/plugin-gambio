@@ -12,15 +12,21 @@
  * This file is an access point for the Lyra Collect payment gateway to validate an order.
  */
 
-// restore session if this is a server call.
-if(key_exists('vads_hash', $_POST) && isset($_POST['vads_hash']) && key_exists('vads_result', $_POST) && isset($_POST['vads_result'])) {
-    $osCsid = substr($_POST['vads_order_info'], strlen('session_id='));
-    $_POST['osCsid'] = $osCsid;
-    $_GET['osCsid'] = $osCsid;
 
-    // for cookie based sessions ...
-    $_COOKIE['osCsid'] = $osCsid;
-    $_COOKIE['cookie_test'] = 'please_accept_for_session';
+// Restore session if this is a server call.
+if (key_exists('vads_hash', $_POST) && isset($_POST['vads_hash']) && key_exists( 'vads_result', $_POST) && isset($_POST['vads_result'])) {
+    global $fromServer;
+    $fromServer = $_POST['vads_hash'];
+
+    $parts = explode('&', $_POST['vads_order_info']);
+    $session_id = substr($parts[0], strlen('session_id='));
+    $use_cookies = substr($parts[1], strlen('use_cookies='));
+    $session_cache_limiter = substr($parts[2], strlen('session_cache_limiter='));
+
+
+    session_id($session_id);
+    ini_set('session.use_cookies', $use_cookies);
+    session_cache_limiter($session_cache_limiter);
 }
 
 require_once 'checkout_process.php';

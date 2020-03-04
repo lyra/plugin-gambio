@@ -97,7 +97,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             defined('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL') ? $this->form_action_url = MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL : $this->form_action_url = '';
 
-            if (defined('MODULE_PAYMENT_LYRA_MULTI_STATUS') && (int)MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS > 0) {
+            if (defined('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS') && (int)MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS > 0) {
                 $this->order_status = MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS;
             }
 
@@ -118,17 +118,15 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 return;
             }
 
-            $billing_zone = $order->billing['zone_id'];
-
             // Check customer zone.
             if ((int)MODULE_PAYMENT_LYRA_MULTI_ZONE > 0) {
                 $flag = false;
                 $check_query = xtc_db_query("SELECT zone_id FROM " . TABLE_ZONES_TO_GEO_ZONES .
                     " WHERE geo_zone_id = '" . MODULE_PAYMENT_LYRA_MULTI_ZONE .
                     "' AND zone_country_id = '" . $order->billing['country']['id'] .
-                    "' ORDER by zone_id ASC;");
+                    "' ORDER BY zone_id ASC;");
                 while ($check = xtc_db_fetch_array($check_query)) {
-                    if (($check['zone_id'] < 1) || ($check['zone_id'] === $billing_zone)) {
+                    if (($check['zone_id'] < 1) || ($check['zone_id'] === $order->billing['zone_id'])) {
                         $flag = true;
                         break;
                     }
@@ -250,7 +248,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function process_button()
         {
-            global $order,$xtPrice ;
+            global $order, $xtPrice ;
 
             // Load Lyra Collect payment API.
             $lyraMultiRequest = new LyraRequest();
@@ -283,6 +281,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 // Currency is not supported, use the default shop currency.
                 $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
                 LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
+
                 $lyraCurrency = LyraApi::findCurrencyByAlphaCode($defaultCurrency);
                 $currencyValue = 1;
             }
@@ -308,7 +307,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 'amount' => $lyraCurrency->convertAmountToInteger($total),
                 'order_id' => $this->_guess_order_id(),
                 'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $version . '/' . PHP_VERSION,
-                'order_info' => 'session_id=' . session_id(),
+                'order_info' => 'session_id=' . session_id() . '&use_cookies=' . ini_get('session.use_cookies') . '&session_cache_limiter=' . session_cache_limiter(),
 
                 // Misc data.
                 'currency' => $lyraCurrency->getNum(),
@@ -369,10 +368,9 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function before_process()
         {
-            global $order, $lyraMultiResponse, $messageStack, $fromServer_ipn;
+            global $order, $lyraMultiResponse, $messageStack, $fromServer;
 
-            $data = !$fromServer_ipn && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
-            logResult(print_r($data, true));
+            $data = !$fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
             $lyraMultiResponse = new LyraResponse(
                 $data,
                 MODULE_PAYMENT_LYRA_MULTI_CTX_MODE,
@@ -380,7 +378,6 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 MODULE_PAYMENT_LYRA_MULTI_KEY_PROD,
                 MODULE_PAYMENT_LYRA_MULTI_SIGN_ALGO
             );
-            $fromServer = $lyraMultiResponse->get('hash');
 
             // Check authenticity.
             if (!$lyraMultiResponse->isAuthentified()) {
@@ -421,7 +418,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                     // Let's borrow the cc_owner field to store transaction id.
                     $order->info['cc_owner'] = '-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Transaction: ' . $lyraMultiResponse->get('trans_id');
 
-                    //update order status
+                    // Update order status
                     $order->info['order_status'] = MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS;
                     $orderStatusQuery = array('orders_id' => $lyraMultiResponse->get('order_id'),
                         'orders_status_id' => MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS,
@@ -472,11 +469,9 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function after_process()
         {
-            global $lyraMultiResponse;
+            global $lyraMultiResponse, $fromServer;
 
             // This function is called only when payment was successful and the order is not registered yet.
-
-            $fromServer = $lyraMultiResponse->get('hash');
 
             // Reset cart to allow new checkout process.
             $_SESSION['cart']->reset(true);
@@ -575,7 +570,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $this->_install_query('SITE_ID', lyra_tools::getDefault('SITE_ID'), 6, 10);
 
             $function = "xtc_cfg_select_option(array(\'PRODUCTION\'),";
-            if (! lyra_tools::$payzen_plugin_features['qualif']) {
+            if (! lyra_tools::$lyra_plugin_features['qualif']) {
                 $function = "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),";
                 $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
             }
