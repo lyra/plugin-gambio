@@ -211,11 +211,19 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 'logo_url' => xtc_href_link('images/lyra_multi.png', '', 'SSL', false, false, false, true, true)
             );
 
+
+            $selection['fields'][] = array(
+                'title' => '<b style="display:none"></b>',
+                'field' => xtc_draw_radio_field('lyra_multi_hidden', '', false, 'style="display:none"'),
+            );
+
             $first = true;
             foreach ($this->get_available_options() as $code => $option) {
+                $styleTitle = $first ? ' style="display: block; margin-top: -30px;"' : '';
+                $styleRadio = $first ? 'style="margin-top: -19px;"' : 'style="margin-top: 10px;"';
                 $selection['fields'][] = array(
-                    'title' => $option['label'],
-                    'field' => xtc_draw_radio_field('lyra_multi_option', $code, $first, ''),
+                    'title' => "<b$styleTitle>" . $option['label'] . "</b>",
+                    'field' => xtc_draw_radio_field('lyra_multi_option', $code, $first, $styleRadio),
                 );
 
                 $first = false;
