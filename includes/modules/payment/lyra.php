@@ -325,7 +325,7 @@ class lyra {
 
         // Messages to display on payment result page.
         if (lyra_tools::$lyra_plugin_features['prodfaq'] && MODULE_PAYMENT_LYRA_CTX_MODE === 'TEST') {
-            $messageStack->add_session('header', MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO . '<a href="###PRODFAQ_URL###" target="_blank">###PRODFAQ_URL###</a>', 'success');
+            $messageStack->add_session('header', MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO , 'success');
         }
 
         // Act according to case.
