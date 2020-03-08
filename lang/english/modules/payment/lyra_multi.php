@@ -15,14 +15,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Payment in instal
 define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Payment by credit card in installments");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Module status");
+define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activation");
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_DESC', "Enables / disables this payment method.");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_TITLE', "Display order");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_DESC', "Display order. The smaller appears first.");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_TITLE', "Payment area");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_DESC', "If an area is selected, this payment mode will only be available for it.");
 define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_TITLE', "Allowed zones");
-define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Please Enter each Zone for which this module should be enabled (e.g. \"UK,DE\"). If left empty, all zones are allowed.");
+define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Please Enter each Zone for which this module should be enabled (e.g. \"UK, DE\"). If left empty, all zones are allowed.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_TITLE', "Shop ID");
@@ -84,7 +84,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Payment options");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Click on \"Add\" button to configure one or more payment options. <br /><b>Label : </b>The option label to display on the frontend. <br /><b>Min amount : </b>Minimum amount to enable the payment option. <br /><b>Max amount : </b>Maximum amount to enable the payment option. <br /><b>Count : </b>Total number of payments. <br /><b>Period : </b>Delay (in days) between payments. <br /><b>1st payment : </b>Amount of first payment, in percentage of total amount. If empty, all payments will have the same amount.<br /><b>Do not forget to click on \"Update\" button to save your modifications.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Click on \"Add\" button to configure one or more payment options.<br /><b>Label:</b> The option label to display on the frontend.<br /><b>Min amount:</b> Minimum amount to enable the payment option.<br /><b>Max amount:</b> Maximum amount to enable the payment option.<br /><b>Contract:</b> ID of the contract to use with the option.<br /><b>Count:</b> Total number of payments.<br /><b>Period:</b> Delay (in days) between payments.<br /><b>1st payment:</b> Amount of first payment, in percentage of total amount. If empty, all payments will have the same amount.<br /><b>Do not forget to click on \"Update\" button to save your modifications.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Label");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Min amount");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Max amount");

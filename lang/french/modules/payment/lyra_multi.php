@@ -11,19 +11,18 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-
 define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Paiement en plusieurs fois");
 define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Paiement par carte bancaire en plusieurs fois");
 
-// ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "État du module");
+## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
+define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activation");
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_DESC', "Active / désactive cette méthode de paiement.");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_TITLE', "Ordre d'affichage");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_DESC', "Le plus petit apparaitra en premier.");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_TITLE', "Zone de paiement");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_DESC', "Si une zone est choisie, ce mode de paiement ne sera effectif que pour celle-ci.");
 define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_TITLE', "Zones autorisées");
-define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Veuillez entrer chaque zone pour lequel ce module devrait être activé (par exemple: \"UK,DE\"). Si vide, toutes les zones seront autorisées.");
+define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Veuillez entrer chaque zone pour lequel ce module devrait être activé (par exemple: \"UK, DE\"). Si vide, toutes les zones seront autorisées.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_TITLE', "Identifiant boutique");
@@ -81,7 +80,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Activé");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_OPTIONS_TITLE', "Options de paiement");
-define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement. <br /><b>Libellé : </b>Texte décrivant l'option de paiement multiple. <br /><b>Montant min : </b>Montant minimum pour proposer l'option. <br /><b>Montant max : </b>Montant maximum pour proposer l'option. <br /><b>Nombre : </b>Nombre total d'échéances. <br /><b>Période : </b>Délai entre deux échéances (en jours). <br /><b>1er paiement : </b>Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
+define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1er paiement:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
 define('MODULE_PAYMENT_LYRA_OPTIONS_LABEL', "Libellé");
 define('MODULE_PAYMENT_LYRA_OPTIONS_MIN_AMOUNT', "Montant min");
 define('MODULE_PAYMENT_LYRA_OPTIONS_MAX_AMOUNT', "Montant max");

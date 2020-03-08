@@ -15,14 +15,14 @@ define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Standard payment");
 define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Payment by credit card");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Module status");
+define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Activation");
 define('MODULE_PAYMENT_LYRA_STATUS_DESC', "Enables / disables this payment method.");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_TITLE', "Display order");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_DESC', "Display order. The smaller appears first.");
 define('MODULE_PAYMENT_LYRA_ZONE_TITLE', "Payment area");
 define('MODULE_PAYMENT_LYRA_ZONE_DESC', "If an area is selected, this payment mode will only be available for it.");
 define('MODULE_PAYMENT_LYRA_ALLOWED_TITLE', "Allowed zones");
-define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Please Enter each Zone for which this module should be enabled (e.g. \"UK,DE\"). If left empty, all zones are allowed.");
+define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Please Enter each Zone for which this module should be enabled (e.g. \"UK, DE\"). If left empty, all zones are allowed.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_SITE_ID_TITLE', "Shop ID");
@@ -73,3 +73,12 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', "Return mode");
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', "Method that will be used for transmitting the payment result from the payment page to your shop.");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
+
+## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
+define('MODULE_PAYMENT_LYRA_VALUE_False', "Disabled");
+define('MODULE_PAYMENT_LYRA_VALUE_True', "Enabled");
+
+define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office configuration");
+define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatic");
+define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manual");
+

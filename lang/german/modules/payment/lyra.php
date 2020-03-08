@@ -15,14 +15,14 @@ define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Standardzahlung");
 define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Zahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Modulstatus");
+define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Aktiviert");
 define('MODULE_PAYMENT_LYRA_STATUS_DESC', "Aktiviert / Deaktiviert dieses Zahlungsmodus.");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_TITLE', "Anzeigereihenfolge");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_DESC', "Anzeigereihenfolge: Von klein nach gross.");
 define('MODULE_PAYMENT_LYRA_ZONE_TITLE', "Zahlungsraum");
 define('MODULE_PAYMENT_LYRA_ZONE_DESC', "Ist ein Zahlungsraum ausgewählt, so wird diese Zahlungsart nur für diesen verfügbar sein.");
 define('MODULE_PAYMENT_LYRA_ALLOWED_TITLE', "Erlaubte Zonen");
-define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Geben Sie einzeln die Zonen an, welche für dieses Modul erlaubt sein sollen. (z.B. AT,DE (wenn leer, werden alle Zonen erlaubt)).");
+define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Geben Sie einzeln die Zonen an, welche für dieses Modul erlaubt sein sollen. (z.B. AT, DE (wenn leer, werden alle Zonen erlaubt)).");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_SITE_ID_TITLE', "Shop ID");
@@ -73,3 +73,11 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', 'Übermittlungs-Modus');
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', 'Methode, die für die Übermittlung des Zahlungsvorgang benützt wird, kommt aus der Bezahlungsseite zu Ihrem Geschäft.');
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Bestellungen Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Der Status der bezahlten Bestellungen durch dieses Beszahlungsmittel definieren.");
+
+## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
+define('MODULE_PAYMENT_LYRA_VALUE_False', "Deaktiviert");
+define('MODULE_PAYMENT_LYRA_VALUE_True', "Aktiviert");
+
+define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office Konfiguration");
+define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatisch");
+define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manuell");

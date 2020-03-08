@@ -15,7 +15,7 @@ define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Pago standard");
 define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Pago con tarjeta de crédito");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Estado del módulo");
+define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Activación");
 define('MODULE_PAYMENT_LYRA_STATUS_DESC', "Habilita/deshabilita este método de pago.");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_TITLE', "Orden de visualización");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_DESC', "Orden de visualización. El más pequeño aparece primero.");
@@ -25,7 +25,7 @@ define('MODULE_PAYMENT_LYRA_ALLOWED_TITLE', "Zonas permitidas");
 define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Ingrese cada zona para la cual este módulo debe estar habilitado (por ejemplo, \"UK, DE \"). Si se deja vacío, todas las zonas están permitidas.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
-define('MODULE_PAYMENT_LYRA_SITE_ID_TITLE', "ID de tienda");
+define('MODULE_PAYMENT_LYRA_SITE_ID_TITLE', "Identificador de tienda");
 define('MODULE_PAYMENT_LYRA_SITE_ID_DESC', "El identificador proporcionado por Lyra Collect.");
 define('MODULE_PAYMENT_LYRA_KEY_TEST_TITLE', "Clave en modo test");
 define('MODULE_PAYMENT_LYRA_KEY_TEST_DESC', "Clave proporcionada por Lyra Collect para modo test (disponible en el Back Office Lyra Expert).");
@@ -73,3 +73,11 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', "Modo de retorno");
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', "Método que se usará para transmitir el resultado del pago de la página de pago a su tienda.");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
+
+## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
+define('MODULE_PAYMENT_LYRA_VALUE_False', "Deshabilitado");
+define('MODULE_PAYMENT_LYRA_VALUE_True', "Habilitado");
+
+define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Configuración del Back Office Lyra Expert");
+define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automático");
+define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manual");

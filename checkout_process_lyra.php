@@ -12,7 +12,6 @@
  * This file is an access point for the Lyra Collect payment gateway to validate an order.
  */
 
-
 // Restore session if this is a server call.
 if (key_exists('vads_hash', $_POST) && isset($_POST['vads_hash']) && key_exists( 'vads_result', $_POST) && isset($_POST['vads_result'])) {
     global $fromServer;
@@ -22,7 +21,6 @@ if (key_exists('vads_hash', $_POST) && isset($_POST['vads_hash']) && key_exists(
     $session_id = substr($parts[0], strlen('session_id='));
     $use_cookies = substr($parts[1], strlen('use_cookies='));
     $session_cache_limiter = substr($parts[2], strlen('session_cache_limiter='));
-
 
     session_id($session_id);
     ini_set('session.use_cookies', $use_cookies);

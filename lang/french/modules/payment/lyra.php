@@ -14,15 +14,15 @@ include_once 'lyra_common.php';
 define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Paiement standard");
 define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Paiement par carte bancaire");
 
-// ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "État du module");
+## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
+define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Activation");
 define('MODULE_PAYMENT_LYRA_STATUS_DESC', "Active / désactive cette méthode de paiement.");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_TITLE', "Ordre d'affichage");
 define('MODULE_PAYMENT_LYRA_SORT_ORDER_DESC', "Le plus petit apparaitra en premier.");
 define('MODULE_PAYMENT_LYRA_ZONE_TITLE', "Zone de paiement");
 define('MODULE_PAYMENT_LYRA_ZONE_DESC', "Si une zone est choisie, ce mode de paiement ne sera effectif que pour celle-ci.");
 define('MODULE_PAYMENT_LYRA_ALLOWED_TITLE', "Zones autorisées");
-define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Veuillez entrer chaque zone pour lequel ce module devrait être activé (par exemple: \"UK,DE\"). Si vide, toutes les zones seront autorisées.");
+define('MODULE_PAYMENT_LYRA_ALLOWED_DESC', "Veuillez entrer chaque zone pour lequel ce module devrait être activé (par exemple: \"UK, DE\"). Si vide, toutes les zones seront autorisées.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_SITE_ID_TITLE', "Identifiant boutique");
@@ -73,3 +73,11 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', "Mode de retour");
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', "Façon dont l'acheteur transmettra le résultat du paiement lors de son retour à la boutique.");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Statut des commandes");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Définir le statut des commandes payées par ce mode de paiement.");
+
+## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
+define('MODULE_PAYMENT_LYRA_VALUE_False', "Désactivé");
+define('MODULE_PAYMENT_LYRA_VALUE_True', "Activé");
+
+define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Configuration Back Office Lyra Expert");
+define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatique");
+define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manuel");

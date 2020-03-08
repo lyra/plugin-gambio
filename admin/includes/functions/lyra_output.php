@@ -10,8 +10,7 @@
 
 /**
  * General functions to draw Lyra Collect configuration parameters.
- * */
-
+ */
 global $lyra_supported_languages, $lyra_supported_cards;
 
 // Load Lyra Collect payment API.
@@ -49,7 +48,7 @@ function lyra_get_lang_title($value)
 
 function lyra_get_multi_lang_title($value)
 {
-    if (!empty($value)) {
+    if (! empty($value)) {
         $langs = explode(';', $value);
 
         $result = array();
@@ -78,7 +77,7 @@ function lyra_get_card_title($value)
 {
     global $lyra_supported_cards;
 
-    if (!empty($value)) {
+    if (! empty($value)) {
         $cards = explode(';', $value);
 
         $result = array();
@@ -94,12 +93,12 @@ function lyra_get_card_title($value)
 
 function lyra_get_multi_options($value)
 {
-    if (!$value) {
+    if (! $value) {
         return '';
     }
 
     $options = json_decode($value, true);
-    if (!is_array($options) || !count($options)) {
+    if (! is_array($options) || ! count($options)) {
         return '';
     }
 
@@ -341,7 +340,7 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
 
     $options = empty($value) ? array() : json_decode($value, true);
 
-    $field = '<input id="' . $name . '_btn" class="' . $name . '_btn"' . (!empty($options) ? ' style="display: none;"' : '') . ' type="button" value="' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD . '" />';
+    $field = '<input id="' . $name . '_btn" class="' . $name . '_btn"' . (! empty($options) ? ' style="display: none;"' : '') . ' type="button" value="' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD . '" />';
     $field .= '<br /><div style="overflow-x: scroll; overflow-y: visible; width: 400px;"><table id="' . $name . '_table"' . (empty($options) ? ' style="display: none;"' : '') . ' cellpadding="10" cellspacing="0" class="infoBoxContent">';
 
     $field .= '<thead><tr>';
@@ -369,7 +368,7 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
                      });';
 
     // Add already inserted lines.
-    if (!empty($options)) {
+    if (! empty($options)) {
         foreach ($options as $code => $option) {
             $field .= "\n" . 'lyraAddOption("' . $name . '", "' . $code . '", ' . json_encode($option) . ');' . "\n";
         }

@@ -16,14 +16,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Zahlung in mehrer
 define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Ratenzahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Modulstatus");
+define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Aktiviert");
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_DESC', "Aktiviert / Deaktiviert dieses Zahlungsmodus.");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_TITLE', "Anzeigereihenfolge");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_DESC', "Anzeigereihenfolge: Von klein nach gross.");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_TITLE', "Zahlungsraum");
 define('MODULE_PAYMENT_LYRA_MULTI_ZONE_DESC', "Ist ein Zahlungsraum ausgewählt, so wird diese Zahlungsart nur für diesen verfügbar sein.");
 define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_TITLE', "Erlaubte Zonen");
-define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Geben Sie einzeln die Zonen an, welche für dieses Modul erlaubt sein sollen. (z.B. AT,DE (wenn leer, werden alle Zonen erlaubt)).");
+define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Geben Sie einzeln die Zonen an, welche für dieses Modul erlaubt sein sollen. (z.B. AT, DE (wenn leer, werden alle Zonen erlaubt)).");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_TITLE', "Shop ID");
@@ -81,7 +81,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Aktiviert");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Zahlungsoptionen");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Auf die Taste \"Hinzufügen\" aufklicken, um ein oder mehrere Zahlungsoptionen aufzubauen. <br /><b>Label: </b>Text, das die Option für mehrere Bezahlung beschreibt. <br /><b>Mindestbetrag : </b>Mindestbetrag um diese Option zu vorschlagen. <br /><b>Höchstbetrag : </b>Höchtsbetrag, um diese Option zu vorschlagen. <br /><b>Zahl : </b>gesamte Zahl von Zahlungen. <br /><b>Zeitraum: </b>Zeit zwischen zwei Zahlungen (in Tages). <br /><b>Erste Zahlung: </b>Betrag der ersten Zahlung ins gesamtes Prozent. Wenn leer, alle Zahlungen werden den gleichen Betrag haben.<br /><b>Vergessen Sie nicht, auf die Taste \"Aktualisieren\" zu klicken um Ihre Veränderungen zu speichern.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Auf die Taste \"Hinzufügen\" aufklicken, um ein oder mehrere Zahlungsoptionen aufzubauen.<br /><b>Name:</b> Beschreibung der Mehrfachzahlung.<br /><b>Mindestbetrag:</b> Mindestbetrag um diese Option zu vorschlagen.<br /><b>Höchstbetrag:</b> Höchstbetrag um die Option anzubieten.< /br><b>Vertrag:</b> Vertrags ID um die Option zu benutzen.<br /><b>Anzahl:</b> Gesamtanzahl der Raten.<br /><b>Zeitraum:</b> Zeit zwischen zwei Zahlungen (in Tages).<br /><b>1. Zahlung:</b> Betrag der ersten Zahlung ins gesamtes Prozent. Wenn leer, alle Zahlungen werden den gleichen Betrag haben.<br /><b>Vergessen Sie nicht, auf die Taste \"Aktualisieren\" zu klicken um Ihre Veränderungen zu speichern.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Kennzeichnung");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Mindestbetrag");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Höchstbetrag");

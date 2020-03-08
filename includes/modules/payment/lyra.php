@@ -24,8 +24,8 @@ include_once (DIR_FS_CATALOG . "lang/$language/modules/payment/lyra.php");
 /**
  * Main class implementing Lyra Collect payment module for OSC.
  */
-class lyra {
-
+class lyra
+{
     /**
      * @var string
      */
@@ -90,9 +90,9 @@ class lyra {
         // Initialize sort_order.
         defined('MODULE_PAYMENT_LYRA_SORT_ORDER') ? $this->sort_order = MODULE_PAYMENT_LYRA_SORT_ORDER : $this->sort_order = '';
 
-        defined('MODULE_PAYMENT_LYRA_PLATFORM_URL')? $this->form_action_url = MODULE_PAYMENT_LYRA_PLATFORM_URL : $this->form_action_url = '';
+        defined('MODULE_PAYMENT_LYRA_PLATFORM_URL') ? $this->form_action_url = MODULE_PAYMENT_LYRA_PLATFORM_URL : $this->form_action_url = '';
 
-        if (defined('MODULE_PAYMENT_LYRA_ORDER_STATUS') && (int)MODULE_PAYMENT_LYRA_ORDER_STATUS > 0) {
+        if (defined('MODULE_PAYMENT_LYRA_ORDER_STATUS') && (int) MODULE_PAYMENT_LYRA_ORDER_STATUS > 0) {
             $this->order_status = MODULE_PAYMENT_LYRA_ORDER_STATUS;
         }
 
@@ -109,12 +109,12 @@ class lyra {
     {
         global $order;
 
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return;
         }
 
         // Check customer zone.
-        if ((int)MODULE_PAYMENT_LYRA_ZONE > 0) {
+        if ((int) MODULE_PAYMENT_LYRA_ZONE > 0) {
             $flag = false;
             $check_query = xtc_db_query("SELECT zone_id FROM " . TABLE_ZONES_TO_GEO_ZONES .
                 " WHERE geo_zone_id = '" . MODULE_PAYMENT_LYRA_ZONE .
@@ -127,7 +127,7 @@ class lyra {
                 }
             }
 
-            if (!$flag) {
+            if (! $flag) {
                 $this->enabled = false;
             }
         }
@@ -140,14 +140,14 @@ class lyra {
 
             // Check currency.
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
-            if (!LyraApi::findCurrencyByAlphaCode($order->info['currency']) && !LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
+            if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
                 // Currency is not supported, module is not available.
                 $this->enabled = false;
             }
     }
 
     /**
-     * JS checks : we let the platform do all the validation itself
+     * JS checks : we let the platform do all the validation itself.
      * @return false
      */
     function javascript_validation()
@@ -156,10 +156,9 @@ class lyra {
     }
 
     /**
-     * Parameters for what the payment option will look like in the list
+     * Parameters for what the payment option will look like in the list.
      * @return array
      */
-
     function selection()
     {
         return array(
@@ -170,7 +169,7 @@ class lyra {
     }
 
     /**
-     * Server-side checks after payment selection : We let the platform do all the validation itself
+     * Server-side checks after payment selection : We let the platform do all the validation itself.
      * @return false
      */
     function pre_confirmation_check()
@@ -179,7 +178,7 @@ class lyra {
     }
 
     /**
-     * Server-size checks before payment confirmation :  We let the platform do all the validation itself
+     * Server-size checks before payment confirmation :  We let the platform do all the validation itself.
      * @return false
      */
     function confirmation()
@@ -188,7 +187,7 @@ class lyra {
     }
 
     /**
-     * Prepare the form that will be sent to the payment gateway
+     * Prepare the form that will be sent to the payment gateway.
      * @return string
      */
     function process_button()
@@ -210,7 +209,7 @@ class lyra {
         }
 
         // Set redirection auto.
-        $lyraRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_' . strtoupper('redirect_enabled')) === 'True'? 1 : 0);
+        $lyraRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_' . strtoupper('redirect_enabled')) === 'True' ? 1 : 0);
 
         // Get the shop language code.
         $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
@@ -222,7 +221,7 @@ class lyra {
         // Get the currency to use.
         $currencyValue = $order->info['currency_value'];
         $lyraCurrency = LyraApi::findCurrencyByAlphaCode($order->info['currency']);
-        if (!$lyraCurrency) {
+        if (! $lyraCurrency) {
             // Currency is not supported, use the default shop currency.
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
             LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
@@ -231,10 +230,10 @@ class lyra {
             $currencyValue = 1;
         }
 
-        // Calculate amount ...
+        // Calculate amount.
         $total = round($order->info['total'] * $currencyValue, $xtPrice->get_decimal_places($lyraCurrency->getAlpha3()));
 
-        // Activate 3ds ?.
+        // Activate 3ds?
         $threedsMpi = null;
         if (MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT) {
             $threedsMpi = '2';
@@ -297,13 +296,13 @@ class lyra {
     }
 
     /**
-     * Verify client data after he returned from payment gateway
+     * Verify client data after he returned from payment gateway.
      */
     function before_process()
     {
         global $order, $lyraResponse, $fromServer;
 
-        $data = !$fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
+        $data = ! $fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
         $lyraResponse = new LyraResponse(
             $data,
             MODULE_PAYMENT_LYRA_CTX_MODE,
@@ -313,7 +312,7 @@ class lyra {
         );
 
         // Check authenticity.
-        if (!$lyraResponse->isAuthentified()) {
+        if (! $lyraResponse->isAuthentified()) {
             if ($fromServer) {
                 die($lyraResponse->getOutputForGateway('auth_fail'));
             } else {
@@ -395,7 +394,7 @@ class lyra {
     }
 
     /**
-     * Post-processing after the order has been finalised
+     * Post-processing after the order has been finalised.
      */
     function after_process()
     {
@@ -438,7 +437,7 @@ class lyra {
      */
     function check()
     {
-        if (!isset($this->_check)) {
+        if (! isset($this->_check)) {
             $check_query = xtc_db_query("SELECT configuration_value FROM " . TABLE_CONFIGURATION .
                 " WHERE configuration_key = 'MODULE_PAYMENT_LYRA_STATUS'");
             $this->_check = xtc_db_num_rows($check_query);
@@ -449,8 +448,8 @@ class lyra {
 
 
     /**
-     * Build and execute a query for the install() function
-     * Parameters have to be escaped before
+     * Build and execute a query for the install() function.
+     * Parameters have to be escaped before.
      *
      * @param string $title
      * @param string $key
@@ -485,7 +484,7 @@ class lyra {
     }
 
     /**
-     * Module install (register admin-managed parameters in database)
+     * Module install (register admin-managed parameters in database).
      */
     function install()
     {
@@ -590,7 +589,7 @@ class lyra {
     /**
      * Try to guess what will be the order's id when Gambio will register it at the end of the payment process.
      * This is only used to set order_id in the request to the payment gateway. It might be inconsistent with the
-     * final Gambio order id (in cases like two clients going to the payment gateway at the same time...)
+     * final Gambio order id (in cases like two clients going to the payment gateway at the same time...).
      *
      * @return int
      */
@@ -600,7 +599,7 @@ class lyra {
         $order_data = xtc_db_fetch_array($order_query);
         $order_id = reset($order_data);
 
-        return $order_id? $order_id + 1 : 0;
+        return $order_id ? $order_id + 1 : 0;
     }
 
     /**

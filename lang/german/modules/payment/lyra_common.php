@@ -14,7 +14,7 @@ require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
 define('MODULE_PAYMENT_LYRA_TECHNICAL_ERROR', "Ein Fehler ist während dem Zahlungsvorgang unterlaufen.");
 define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Ihre Bestellung konnte nicht bestätigt werden.  Die Zahlung wurde nicht angenommen.");
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "Es konnte keine automatische Benachrichtigung erstellt werden. Bitte prüfen Sie, ob die Benachrichtigung-URL in Ihrem Lyra Expert Back Office korrekt eingerichtet ist?");
-define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Nähere Informationen zu diesem Problem entnehmen Sie bitte der Moduldokumentation: <br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Bitte vor dem Weiterlesen aufmerksam lesen &raquo;<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Benachrichtigung-URL Einstellungen &raquo;");
+define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Nähere Informationen zu diesem Problem entnehmen Sie bitte der Moduldokumentation:<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Bitte vor dem Weiterlesen aufmerksam lesen &raquo;<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Benachrichtigung-URL Einstellungen &raquo;");
 define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>UMSTELLUNG AUF PRODUKTIONSUMFELD</u></p>Sie möchten wissen, wie Sie auf Produktionsumfeld umstellen können, bitte lesen Sie die Kapitel « Weiter zur Testphase » und « Verschieben des Shops in den Produktionsumfeld » in der Dokumentation des Moduls");
 
 ## ADMINISTRATION INTERFACE - INFORMATIONS ##
@@ -23,16 +23,9 @@ define('MODULE_PAYMENT_LYRA_DEVELOPED_BY', "Entwickelt von");
 define('MODULE_PAYMENT_LYRA_CONTACT_EMAIL', "E-Mail-Adresse");
 define('MODULE_PAYMENT_LYRA_PLUGIN_VERSION', "Modulversion");
 define('MODULE_PAYMENT_LYRA_GATEWAY_VERSION', "Kompatibel mit Zahlungsschnittstelle");
-define('MODULE_PAYMENT_LYRA_CHECK_URL', "Benachrichtigung-URL zur Eintragung in Ihr Shopsystem: <br />");
+define('MODULE_PAYMENT_LYRA_CHECK_URL', "Benachrichtigung-URL zur Eintragung in Ihr Shopsystem:<br />");
 
 ## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_VALUE_False', "Deaktiviert");
-define('MODULE_PAYMENT_LYRA_VALUE_True', "Aktiviert");
-
-define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office Konfiguration");
-define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Auto");
-define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manuell");
-
 define('MODULE_PAYMENT_LYRA_LANGUAGE_FRENCH', "Französisch");
 define('MODULE_PAYMENT_LYRA_LANGUAGE_GERMAN', "Deutsch");
 define('MODULE_PAYMENT_LYRA_LANGUAGE_ENGLISH', "Englisch");

@@ -15,7 +15,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Pago en cuotas");
 define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Pago con tarjeta de crédito en cuotas");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
-define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Estado del módulo");
+define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activación");
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_DESC', "Habilita/deshabilita este método de pago.");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_TITLE', "Orden de visualización");
 define('MODULE_PAYMENT_LYRA_MULTI_SORT_ORDER_DESC', "Orden de visualización. El más pequeño aparece primero.");
@@ -25,7 +25,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_TITLE', "Zonas permitidas");
 define('MODULE_PAYMENT_LYRA_MULTI_ALLOWED_DESC', "Ingrese cada zona para la cual este módulo debe estar habilitado (por ejemplo, \"UK, DE \"). Si se deja vacío, todas las zonas están permitidas.");
 
 ## ADMINISTRATION INTERFACE - PLATFORM SETTINGS ##
-define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_TITLE', "ID de tienda");
+define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_TITLE', "Identificador de tienda");
 define('MODULE_PAYMENT_LYRA_MULTI_SITE_ID_DESC', "El identificador proporcionado por Lyra Collect.");
 define('MODULE_PAYMENT_LYRA_MULTI_KEY_TEST_TITLE', "Clave en modo test");
 define('MODULE_PAYMENT_LYRA_MULTI_KEY_TEST_DESC', "Clave proporcionada por Lyra Collect para modo test (disponible en el Back Office Lyra Expert).");
@@ -84,7 +84,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Opciones de pago");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Haga clic en el botón \"Agregar\" para configurar una o más opciones de pago. <br /><b>Etiqueta: </b>La etiqueta de opción a mostrar en el frontend. <br /><b>Monto mínimo: </b>Monto mínimo para habilitar la opción de pago. <br /><b>Monto máximo: </b>Monto máximo para habilitar la opción de pago. <br /><b>Conteo: </b>Número total de pagos. <br /><b>Periodo: </b>Plazo (en días) entre pagos. <br /><b>Primer pago: </b>Monto del primer pago, en porcentaje del monto total. Si está vacío, todos los pagos tendrán el mismo monto.<br /><b>No olvide hacer clic en el botón \"Actualizar\" para guardar sus modificaciones.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Haga clic en el botón \"Agregar\" para configurar una o más opciones de pago.<br /><b>Etiqueta:</b> La etiqueta de opción a mostrar en el frontend.<br /><b>Monto mínimo:</b> Monto mínimo para habilitar la opción de pago.<br /><b>Monto máximo:</b> Monto máximo para habilitar la opción de pago.<b>Afiliación:</b> ID de la afiliación a usar con la opción.<br /><b>Conteo:</b> Número total de pagos.<br /><b>Periodo:</b> Plazo (en días) entre pagos.<br /><b>Primer pago:</b> Monto del primer pago, en porcentaje del monto total. Si está vacío, todos los pagos tendrán el mismo monto.<br /><b>No olvide hacer clic en el botón \"Actualizar\" para guardar sus modificaciones.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Etiqueta");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Monto mínimo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Monto máximo");

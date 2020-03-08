@@ -27,7 +27,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
     /**
      * Main class implementing Lyra Collect multiple payment module for OSC.
      */
-    class lyra_multi {
+    class lyra_multi
+    {
         /**
          * @var string
          */
@@ -97,7 +98,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             defined('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL') ? $this->form_action_url = MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL : $this->form_action_url = '';
 
-            if (defined('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS') && (int)MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS > 0) {
+            if (defined('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS') && (int) MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS > 0) {
                 $this->order_status = MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS;
             }
 
@@ -108,18 +109,18 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Payment zone and amount restriction checks
+         * Payment zone and amount restriction checks.
          */
         function update_status()
         {
             global $order;
 
-            if (!$this->enabled) {
+            if (! $this->enabled) {
                 return;
             }
 
             // Check customer zone.
-            if ((int)MODULE_PAYMENT_LYRA_MULTI_ZONE > 0) {
+            if ((int) MODULE_PAYMENT_LYRA_MULTI_ZONE > 0) {
                 $flag = false;
                 $check_query = xtc_db_query("SELECT zone_id FROM " . TABLE_ZONES_TO_GEO_ZONES .
                     " WHERE geo_zone_id = '" . MODULE_PAYMENT_LYRA_MULTI_ZONE .
@@ -132,7 +133,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                     }
                 }
 
-                if (!$flag) {
+                if (! $flag) {
                     $this->enabled = false;
                 }
             }
@@ -145,7 +146,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
                 // Check currency.
                 $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
-                if (!LyraApi::findCurrencyByAlphaCode($order->info['currency']) && !LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
+                if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
                     // Currency is not supported, module is not available.
                     $this->enabled = false;
                 }
@@ -174,8 +175,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                         continue;
                     }
 
-                    if ((!$option['min_amount'] || $amount >= $option['min_amount'])
-                        && (!$option['max_amount'] || $amount <= $option['max_amount'])) {
+                    if ((! $option['min_amount'] || $amount >= $option['min_amount'])
+                        && (! $option['max_amount'] || $amount <= $option['max_amount'])) {
                             // Option will be available.
                             $availOptions[$code] = $option;
                         }
@@ -186,7 +187,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * JS checks : we let the platform do all the validation itself
+         * JS checks : we let the platform do all the validation itself.
          * @return false
          */
         function javascript_validation()
@@ -195,13 +196,13 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Parameters for what the payment option will look like in the list
+         * Parameters for what the payment option will look like in the list.
          * @return array
          */
         function selection()
         {
             $this->update_status();
-            if (!$this->enabled) {
+            if (! $this->enabled) {
                 return null;
             }
 
@@ -233,7 +234,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Server-side checks after payment selection : We let the platform do all the validation itself
+         * Server-side checks after payment selection : We let the platform do all the validation itself.
          * @return false
          */
         function pre_confirmation_check()
@@ -242,7 +243,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Server-size checks before payment confirmation :  We let the platform do all the validation itself
+         * Server-size checks before payment confirmation :  We let the platform do all the validation itself.
          * @return false
          */
         function confirmation()
@@ -251,7 +252,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Prepare the form that will be sent to the payment gateway
+         * Prepare the form that will be sent to the payment gateway.
          * @return string
          */
         function process_button()
@@ -273,7 +274,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             }
 
             // Set redirection auto.
-            $lyraMultiRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_MULTI_' . strtoupper('redirect_enabled')) === 'True'? 1 : 0);
+            $lyraMultiRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_MULTI_' . strtoupper('redirect_enabled')) === 'True' ? 1 : 0);
 
             // Get the shop language code.
             $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
@@ -285,7 +286,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             // Get the currency to use.
             $currencyValue = $order->info['currency_value'];
             $lyraCurrency = LyraApi::findCurrencyByAlphaCode($order->info['currency']);
-            if (!$lyraCurrency) {
+            if (! $lyraCurrency) {
                 // Currency is not supported, use the default shop currency.
                 $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
                 LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
@@ -294,10 +295,10 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 $currencyValue = 1;
             }
 
-            // Calculate amount ...
+            // Calculate amount.
             $total = round($order->info['total'] * $currencyValue, $xtPrice->get_decimal_places($lyraCurrency->getAlpha3()));
 
-            // Activate 3ds ?.
+            // Activate 3ds?
             $threedsMpi = null;
             if (MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT) {
                 $threedsMpi = '2';
@@ -356,7 +357,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             // Set multi payment options.
             $options = $this->get_available_options();
-            $option = is_array($options[$_POST['lyra_multi_option']]) ? $options[$_POST['lyra_multi_option']] : array() ;
+            $option = is_array($options[$_POST['lyra_multi_option']]) ? $options[$_POST['lyra_multi_option']] : array();
 
             $first = (key_exists('first', $option) && $option['first'] !== '') ?
             $lyraCurrency->convertAmountToInteger(($option['first'] / 100) * $total) :
@@ -372,13 +373,13 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Verify client data after he returned from payment gateway
+         * Verify client data after he returned from payment gateway.
          */
         function before_process()
         {
             global $order, $lyraMultiResponse, $fromServer;
 
-            $data = !$fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
+            $data = ! $fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
             $lyraMultiResponse = new LyraResponse(
                 $data,
                 MODULE_PAYMENT_LYRA_MULTI_CTX_MODE,
@@ -388,7 +389,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             );
 
             // Check authenticity.
-            if (!$lyraMultiResponse->isAuthentified()) {
+            if (! $lyraMultiResponse->isAuthentified()) {
                 if ($fromServer) {
                     die($lyraMultiResponse->getOutputForGateway('auth_fail'));
                 } else {
@@ -417,8 +418,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 } else {
                     // Update order payment data.
                     $multiSettings = $lyraMultiResponse->get('payment_config');
-                    $sub = substr($multiSettings, strpos($multiSettings,'count=')+strlen('count='),strlen($multiSettings));
-                    $nbCount = substr($sub,0,strpos($sub,';'));
+                    $sub = substr($multiSettings, strpos($multiSettings,'count=') + strlen('count='), strlen($multiSettings));
+                    $nbCount = substr($sub, 0, strpos($sub,';'));
                     $order->info['cc_type'] = $lyraMultiResponse->get('card_brand') . ' - ' . $nbCount . 'x';
                     $order->info['cc_number'] = $lyraMultiResponse->get('card_number');
                     $order->info['cc_expires'] = str_pad($lyraMultiResponse->get('expiry_month'), 2, '0', STR_PAD_LEFT) . substr($lyraMultiResponse->get('expiry_year'), 2);
@@ -473,7 +474,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Post-processing after the order has been finalised
+         * Post-processing after the order has been finalised.
          */
         function after_process()
         {
@@ -516,7 +517,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function check()
         {
-            if (!isset($this->_check)) {
+            if (! isset($this->_check)) {
                 $check_query = xtc_db_query("SELECT configuration_value FROM " . TABLE_CONFIGURATION .
                     " WHERE configuration_key = 'MODULE_PAYMENT_LYRA_MULTI_STATUS'");
                 $this->_check = xtc_db_num_rows($check_query);
@@ -527,8 +528,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
 
         /**
-         * Build and execute a query for the install() function
-         * Parameters have to be escaped before
+         * Build and execute a query for the install() function.
+         * Parameters have to be escaped before.
          *
          * @param string $title
          * @param string $key
@@ -563,7 +564,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Module install (register admin-managed parameters in database)
+         * Module install (register admin-managed parameters in database).
          */
         function install()
         {
@@ -614,7 +615,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         }
 
         /**
-         * Module deletion
+         * Module deletion.
          */
         function remove()
         {
@@ -674,7 +675,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         /**
          * Try to guess what will be the order's id when Gambio will register it at the end of the payment process.
          * This is only used to set order_id in the request to the payment gateway. It might be inconsistent with the
-         * final Gambio order id (in cases like two clients going to the payment gateway at the same time...)
+         * final Gambio order id (in cases like two clients going to the payment gateway at the same time...).
          *
          * @return int
          */
@@ -684,7 +685,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $order_data = xtc_db_fetch_array($order_query);
             $order_id = reset($order_data);
 
-            return $order_id? $order_id + 1 : 0;
+            return $order_id ? $order_id + 1 : 0;
         }
 
         /**

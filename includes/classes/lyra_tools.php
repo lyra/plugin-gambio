@@ -33,7 +33,7 @@ class lyra_tools
         'shatwo' => true,
 
         'multi' => true,
-        'shatwoonly' => false,
+        'shatwoonly' => false
     );
 
     public static function getDefault($name)

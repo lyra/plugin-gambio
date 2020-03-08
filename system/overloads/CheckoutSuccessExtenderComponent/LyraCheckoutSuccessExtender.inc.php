@@ -10,7 +10,7 @@
 
 class LyraCheckoutSuccessExtender extends LyraCheckoutSuccessExtender_parent
 {
-      public function proceed()
+    public function proceed()
     {
         parent::proceed();
 
@@ -18,24 +18,23 @@ class LyraCheckoutSuccessExtender extends LyraCheckoutSuccessExtender_parent
 
         if(isset($_SESSION['lyra_prodfaq_message'])) {
             $lyra_messages .= '<div class="alert alert-success">
-                                  <strong>' .
-                                       $_SESSION['lyra_prodfaq_message'] .
-                                  '</strong>
-                              </div>';
+                                    <strong>'
+                                        . $_SESSION['lyra_prodfaq_message'] .
+                                    '</strong>
+                               </div>';
             unset($_SESSION['lyra_prodfaq_message']);
         }
 
         if(isset($_SESSION['lyra_warn_ipn_message']))
         {
             $lyra_messages .= '<div class="alert alert-info">
-                                   <strong>' .
-                                       $_SESSION['lyra_warn_ipn_message'] .
-                                   '</strong>
+                                    <strong>'
+                                        . $_SESSION['lyra_warn_ipn_message'] .
+                                    '</strong>
                                </div>';
             unset($_SESSION['lyra_warn_ipn_message']);
         }
 
         $this->html_output_array[] = $lyra_messages;
-
     }
 }
