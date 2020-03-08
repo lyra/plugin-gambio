@@ -160,10 +160,16 @@ function lyra_cfg_draw_pull_down_sign_algos($value = '', $name)
         $value = stripslashes($GLOBALS[$name]);
     }
 
-    $algos = array(
-        'SHA-1' => 'SHA-1',
-        'SHA-256' => 'HMAC-SHA-256'
-    );
+    if (lyra_tools::$lyra_plugin_features['shatwoonly']) {
+        $algos =  array(
+            'SHA-256' => 'HMAC-SHA-256'
+        );
+    } else {
+        $algos = array(
+            'SHA-1' => 'SHA-1',
+            'SHA-256' => 'HMAC-SHA-256'
+        );
+    }
 
     $field = '<select name="' . $name . '">';
     foreach ($algos as $code => $algo) {
