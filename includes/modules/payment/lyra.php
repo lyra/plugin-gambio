@@ -301,7 +301,7 @@ class lyra {
      */
     function before_process()
     {
-        global $order, $lyraResponse, $messageStack, $fromServer;
+        global $order, $lyraResponse, $fromServer;
 
         $data = !$fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
         $lyraResponse = new LyraResponse(
@@ -325,7 +325,7 @@ class lyra {
 
         // Messages to display on payment result page.
         if (lyra_tools::$lyra_plugin_features['prodfaq'] && MODULE_PAYMENT_LYRA_CTX_MODE === 'TEST') {
-            $messageStack->add_session('header', MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO , 'success');
+            $_SESSION['lyra_prodfaq_message'] = MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO;
         }
 
         // Act according to case.
@@ -399,7 +399,7 @@ class lyra {
      */
     function after_process()
     {
-        global $lyraResponse, $messageStack, $fromServer;
+        global $lyraResponse, $fromServer;
 
         // This function is called only when payment was successful and the order is not registered yet.
 
@@ -413,7 +413,7 @@ class lyra {
 
             // Payment confirmed by client retun, show a warning if TEST mode.
             if (MODULE_PAYMENT_LYRA_CTX_MODE === 'TEST') {
-                $messageStack->add_session('header', MODULE_PAYMENT_LYRA_CHECK_URL_WARN . '<br />' . MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL, 'warning');
+                $_SESSION['lyra_warn_ipn_message'] = MODULE_PAYMENT_LYRA_CHECK_URL_WARN . '<br />' . MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL;
             }
 
             xtc_redirect(xtc_href_link(FILENAME_CHECKOUT_SUCCESS, '', 'SSL'));
@@ -600,7 +600,7 @@ class lyra {
         $order_data = xtc_db_fetch_array($order_query);
         $order_id = reset($order_data);
 
-        return $order_id? $order_id : 0;
+        return $order_id? $order_id + 1 : 0;
     }
 
     /**
