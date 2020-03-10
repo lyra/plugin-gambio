@@ -532,9 +532,9 @@ class lyra
         // Gateway return parameters.
         $this->_install_query('REDIRECT_ENABLED', 'False', 6, 40, "gm_cfg_select_option(array(\'True\', \'False\'), ", 'lyra_get_bool_title');
         $this->_install_query('REDIRECT_SUCCESS_TIMEOUT', 5, 6, 41);
-        $this->_install_query('REDIRECT_SUCCESS_MESSAGE', 'Redirection to shop in a few seconds...', 6, 42);
+        $this->_install_query('REDIRECT_SUCCESS_MESSAGE', MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE, 6, 42);
         $this->_install_query('REDIRECT_ERROR_TIMEOUT', 5, 6, 43);
-        $this->_install_query('REDIRECT_ERROR_MESSAGE', 'Redirection to shop in a few seconds...', 6, 44);
+        $this->_install_query('REDIRECT_ERROR_MESSAGE', MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE, 6, 44);
         $this->_install_query('RETURN_MODE', 'GET', 6, 45, "xtc_cfg_select_option(array(\'GET\', \'POST\'), ");
         $this->_install_query('ORDER_STATUS', '0', 6, 48, 'xtc_cfg_pull_down_order_statuses(', 'xtc_get_order_status_name');
     }

@@ -16,6 +16,7 @@ define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Votre commande n'a pas pu être con
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "La validation automatique n'a pas fonctionné. Avez-vous configuré correctement l'URL serveur dans le Back Office Lyra Expert?");
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Afin de comprendre la problématique, reportez vous à la documentation du module:<br />&nbsp;&nbsp;&nbsp;- Chapitre &laquo; A lire attentivement avant d'aller loin &raquo;<br />&nbsp;&nbsp;&nbsp;- Chapitre &laquo; Paramétrage de l'URL de notification &raquo;");
 define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>PASSAGE EN PRODUCTION</u></p>Vous souhaitez savoir comment passer votre boutique en production, merci de consulter les chapitres « Procéder à la phase des tests » et « Passage d'une boutique en mode production » de la documentation du module.");
+define('MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE', 'Redirection vers la boutique dans quelques instants...');
 
 ## ADMINISTRATION INTERFACE - INFORMATIONS ##
 define('MODULE_PAYMENT_LYRA_MODULE_INFORMATION', "INFORMATIONS SUR LE MODULE");

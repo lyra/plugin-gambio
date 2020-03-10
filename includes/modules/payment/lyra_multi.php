@@ -616,9 +616,9 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             // Gateway return parameters.
             $this->_install_query('REDIRECT_ENABLED', 'False', 6, 50, "gm_cfg_select_option(array(\'True\', \'False\'), ", 'lyra_get_bool_title');
             $this->_install_query('REDIRECT_SUCCESS_TIMEOUT', 5, 6, 51);
-            $this->_install_query('REDIRECT_SUCCESS_MESSAGE', 'Redirection to shop in a few seconds...', 6, 52);
+            $this->_install_query('REDIRECT_SUCCESS_MESSAGE', MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE, 6, 52);
             $this->_install_query('REDIRECT_ERROR_TIMEOUT', 5, 6, 53);
-            $this->_install_query('REDIRECT_ERROR_MESSAGE', 'Redirection to shop in a few seconds...', 6, 54);
+            $this->_install_query('REDIRECT_ERROR_MESSAGE', MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE, 6, 54);
             $this->_install_query('RETURN_MODE', 'GET', 6, 55, "xtc_cfg_select_option(array(\'GET\', \'POST\'), ");
             $this->_install_query('ORDER_STATUS', '0', 6, 56, 'xtc_cfg_pull_down_order_statuses(', 'xtc_get_order_status_name');
         }

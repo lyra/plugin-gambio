@@ -16,6 +16,7 @@ define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Ihre Bestellung konnte nicht bestä
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "Es konnte keine automatische Benachrichtigung erstellt werden. Bitte prüfen Sie, ob die Benachrichtigung-URL in Ihrem Lyra Expert Back Office korrekt eingerichtet ist?");
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Nähere Informationen zu diesem Problem entnehmen Sie bitte der Moduldokumentation:<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Bitte vor dem Weiterlesen aufmerksam lesen &raquo;<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Benachrichtigung-URL Einstellungen &raquo;");
 define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>UMSTELLUNG AUF PRODUKTIONSUMFELD</u></p>Sie möchten wissen, wie Sie auf Produktionsumfeld umstellen können, bitte lesen Sie die Kapitel « Weiter zur Testphase » und « Verschieben des Shops in den Produktionsumfeld » in der Dokumentation des Moduls");
+define('MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE', 'Weiterleitung zum Shop in Kürze...');
 
 ## ADMINISTRATION INTERFACE - INFORMATIONS ##
 define('MODULE_PAYMENT_LYRA_MODULE_INFORMATION', "MODULINFORMATIONEN");

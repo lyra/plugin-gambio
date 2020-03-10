@@ -16,6 +16,7 @@ define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Your order has not been confirmed. 
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "The automatic validation has not worked. Have you correctly set up the notification URL in the Lyra Expert Back Office?");
 define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "For understanding the problem, please read the documentation of the module:<br />&nbsp;&nbsp;&nbsp;- Chapter &laquo; To read carefully before going further &raquo;<br />&nbsp;&nbsp;&nbsp;- Chapter &laquo; Notification URL settings &raquo;");
 define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>GOING INTO PRODUCTION</u></p>You want to know how to put your shop into production mode, please read chapters « Proceeding to test phase » and « Shifting the shop to production mode » in the documentation of the module.");
+define('MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE', 'Redirection to shop in a few seconds...');
 
 ## ADMINISTRATION INTERFACE - INFORMATIONS ##
 define('MODULE_PAYMENT_LYRA_MODULE_INFORMATION', "MODULE INFORMATION");
