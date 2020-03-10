@@ -365,8 +365,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $option = is_array($options[$_POST['lyra_multi_option']]) ? $options[$_POST['lyra_multi_option']] : array();
 
             $first = (key_exists('first', $option) && $option['first'] !== '') ?
-            $lyraCurrency->convertAmountToInteger(($option['first'] / 100) * $total) :
-            NULL;
+                $lyraCurrency->convertAmountToInteger(($option['first'] / 100) * $total) : NULL;
 
             // Override cb contract.
             $data['contracts'] = $option['contract'] ? 'CB=' . $option['contract'] : null;

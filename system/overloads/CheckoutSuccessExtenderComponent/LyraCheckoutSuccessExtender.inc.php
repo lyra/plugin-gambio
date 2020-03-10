@@ -16,7 +16,7 @@ class LyraCheckoutSuccessExtender extends LyraCheckoutSuccessExtender_parent
 
         $lyra_messages = '';
 
-        if(isset($_SESSION['lyra_prodfaq_message'])) {
+        if (isset($_SESSION['lyra_prodfaq_message'])) {
             $lyra_messages .= '<div class="alert alert-success">
                                     <strong>'
                                         . $_SESSION['lyra_prodfaq_message'] .
@@ -25,8 +25,7 @@ class LyraCheckoutSuccessExtender extends LyraCheckoutSuccessExtender_parent
             unset($_SESSION['lyra_prodfaq_message']);
         }
 
-        if(isset($_SESSION['lyra_warn_ipn_message']))
-        {
+        if (isset($_SESSION['lyra_warn_ipn_message'])) {
             $lyra_messages .= '<div class="alert alert-info">
                                     <strong>'
                                         . $_SESSION['lyra_warn_ipn_message'] .

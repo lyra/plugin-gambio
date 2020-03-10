@@ -16,7 +16,7 @@ class Lyra_multiCheckoutSuccessExtender extends Lyra_multiCheckoutSuccessExtende
 
         $lyra_multi_messages = '';
 
-        if(isset($_SESSION['lyra_multi_prodfaq_message'])) {
+        if (isset($_SESSION['lyra_multi_prodfaq_message'])) {
             $lyra_multi_messages .= '<div class="alert alert-success">
                                         <strong>'
                                             . $_SESSION['lyra_multi_prodfaq_message'] .
@@ -25,8 +25,7 @@ class Lyra_multiCheckoutSuccessExtender extends Lyra_multiCheckoutSuccessExtende
             unset($_SESSION['lyra_multi_prodfaq_message']);
         }
 
-        if(isset($_SESSION['lyra_multi_warn_ipn_message']))
-        {
+        if (isset($_SESSION['lyra_multi_warn_ipn_message'])) {
             $lyra_multi_messages .= '<div class="alert alert-info">
                                         <strong>'
                                             . $_SESSION['lyra_multi_warn_ipn_message'] .

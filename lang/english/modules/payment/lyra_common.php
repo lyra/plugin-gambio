@@ -24,7 +24,7 @@ define('MODULE_PAYMENT_LYRA_DEVELOPED_BY', "Developed by");
 define('MODULE_PAYMENT_LYRA_CONTACT_EMAIL', "Contact us");
 define('MODULE_PAYMENT_LYRA_PLUGIN_VERSION', "Module version");
 define('MODULE_PAYMENT_LYRA_GATEWAY_VERSION', "Gateway version");
-define('MODULE_PAYMENT_LYRA_CHECK_URL', "Instant Payment Notification URL to copy into your Lyra Expert Back Office: <br />");
+define('MODULE_PAYMENT_LYRA_CHECK_URL', "Instant Payment Notification URL to copy into your Lyra Expert Back Office:<br />");
 
 ## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
 define('MODULE_PAYMENT_LYRA_LANGUAGE_FRENCH', "French");

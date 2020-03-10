@@ -7,7 +7,7 @@ Lyra Collect for Gambio is an open source plugin that links e-commerce websites 
 If you already installed an old version of the module, you must uninstall it before installing new version:
 
 - Go to `Modules > Payment Systems > Miscellaneous > added modules` menu in the Gambio backend.
-- Click on "Lyra Collect - Standard payment" entry than click on `Uninstall` button.
+- Click on "Lyra Collect - Standard payment" entry then click on `Uninstall` button.
 - Do the same with "Lyra Collect - Payment in installments" if installed.
 
 **Do not forget to backup your module settings.**
@@ -29,4 +29,4 @@ Once the module is installed, to configure it:
 
 Each Lyra Collect payment plugin source file included in this distribution is licensed under the GNU GENERAL PUBLIC LICENSE (GPL 2.0 or later).
 
-Please see LICENSE.txt for the full text of the GPL 2.0 license. It is also available through the world-wide-web at this URL: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html .
+Please see LICENSE.txt for the full text of the GPL 2.0 license. It is also available through the world-wide-web at this URL: http://www.gnu.org/licenses/old-licenses/gpl-2.0.html.
