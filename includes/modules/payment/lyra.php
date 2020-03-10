@@ -133,8 +133,8 @@ class lyra
         }
 
         // Check amount restrictions.
-        if ((MODULE_PAYMENT_LYRA_AMOUNT_MIN !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_AMOUNT_MIN)
-            || (MODULE_PAYMENT_LYRA_AMOUNT_MAX !== '' && $order->info['total'] > MODULE_PAYMENT_LYRA_AMOUNT_MAX)) {
+        if (((int) MODULE_PAYMENT_LYRA_AMOUNT_MIN && $order->info['total'] < MODULE_PAYMENT_LYRA_AMOUNT_MIN)
+            || ((int) MODULE_PAYMENT_LYRA_AMOUNT_MAX && $order->info['total'] > MODULE_PAYMENT_LYRA_AMOUNT_MAX)) {
                 $this->enabled = false;
             }
 
@@ -215,8 +215,8 @@ class lyra
         $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
         $langData = xtc_db_fetch_array($query);
         $lyraLanguage = LyraApi::isSupportedLanguage($langData['code']) ?
-        strtolower($langData['code']) :
-        MODULE_PAYMENT_LYRA_LANGUAGE;
+            strtolower($langData['code']) :
+            MODULE_PAYMENT_LYRA_LANGUAGE;
 
         // Get the currency to use.
         $currencyValue = $order->info['currency_value'];
@@ -224,7 +224,7 @@ class lyra
         if (! $lyraCurrency) {
             // Currency is not supported, use the default shop currency.
             $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
-            LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
+                LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
 
             $lyraCurrency = LyraApi::findCurrencyByAlphaCode($defaultCurrency);
             $currencyValue = 1;

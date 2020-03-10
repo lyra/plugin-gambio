@@ -12,7 +12,7 @@ require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
 
 if (lyra_tools::$lyra_plugin_features['multi']) {
     // Include Lyra Collect API class.
-    require_once(DIR_FS_CATALOG . 'inc/xtc_output_warning.inc.php');
+    require_once (DIR_FS_CATALOG . 'inc/xtc_output_warning.inc.php');
     require_once (DIR_FS_CATALOG . 'includes/classes/lyra_api.php');
     require_once (DIR_FS_CATALOG . 'includes/classes/lyra_request.php');
     require_once (DIR_FS_CATALOG . 'includes/classes/lyra_response.php');
@@ -139,8 +139,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             }
 
             // Check amount restrictions.
-            if ((MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN)
-                || (MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX !== '' && $order->info['total'] > MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX)) {
+            if (((int) MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN && $order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN)
+                || ((int) MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX && $order->info['total'] > MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX)) {
                     $this->enabled = false;
                 }
 
@@ -280,8 +280,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
             $langData = xtc_db_fetch_array($query);
             $lyraLanguage = LyraApi::isSupportedLanguage($langData['code']) ?
-            strtolower($langData['code']) :
-            MODULE_PAYMENT_LYRA_MULTI_LANGUAGE;
+                strtolower($langData['code']) :
+                MODULE_PAYMENT_LYRA_MULTI_LANGUAGE;
 
             // Get the currency to use.
             $currencyValue = $order->info['currency_value'];
@@ -289,7 +289,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             if (! $lyraCurrency) {
                 // Currency is not supported, use the default shop currency.
                 $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ?
-                LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
+                    LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
 
                 $lyraCurrency = LyraApi::findCurrencyByAlphaCode($defaultCurrency);
                 $currencyValue = 1;

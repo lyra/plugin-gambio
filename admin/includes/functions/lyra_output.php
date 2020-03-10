@@ -28,9 +28,9 @@ function lyra_get_bool_title($value)
 
     if (defined($key)) {
         return constant($key);
-    } else {
-        return $value;
     }
+
+    return $value;
 }
 
 function lyra_get_lang_title($value)
@@ -41,9 +41,9 @@ function lyra_get_lang_title($value)
 
     if (defined($key)) {
         return constant($key);
-    } else {
-        return $value;
     }
+
+    return $value;
 }
 
 function lyra_get_multi_lang_title($value)
@@ -57,9 +57,9 @@ function lyra_get_multi_lang_title($value)
         }
 
         return implode(', ', $result);
-    } else {
-        return '';
     }
+
+    return '';
 }
 
 function lyra_get_validation_mode_title($value)
@@ -68,9 +68,9 @@ function lyra_get_validation_mode_title($value)
 
     if (defined($key)) {
         return constant($key);
-    } else {
-        return MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT;
     }
+
+    return MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT;
 }
 
 function lyra_get_card_title($value)
@@ -86,9 +86,9 @@ function lyra_get_card_title($value)
         }
 
         return implode(', ', $result);
-    } else {
-        return '';
     }
+
+    return '';
 }
 
 function lyra_get_multi_options($value)
@@ -134,7 +134,9 @@ function lyra_get_multi_options($value)
 function lyra_cfg_draw_pull_down_bools($value = '', $name)
 {
     $name = 'configuration[' . lyra_output_string($name) . ']';
-    if (empty($value) && isset($GLOBALS[$name])) $value = stripslashes($GLOBALS[$name]);
+    if (empty($value) && isset($GLOBALS[$name])) {
+        $value = stripslashes($GLOBALS[$name]);
+    }
 
     $bools = array('True', 'False');
 
@@ -160,7 +162,7 @@ function lyra_cfg_draw_pull_down_sign_algos($value = '', $name)
     }
 
     if (lyra_tools::$lyra_plugin_features['shatwoonly']) {
-        $algos =  array(
+        $algos = array(
             'SHA-256' => 'HMAC-SHA-256'
         );
     } else {
@@ -222,7 +224,9 @@ function lyra_cfg_draw_pull_down_langs($value = '', $name)
     global $lyra_supported_languages;
 
     $name = 'configuration[' . lyra_output_string($name) . ']';
-    if (empty($value) && isset($GLOBALS[$name])) $value = stripslashes($GLOBALS[$name]);
+    if (empty($value) && isset($GLOBALS[$name])) {
+        $value = stripslashes($GLOBALS[$name]);
+    }
 
     $field = '<select name="' . $name . '">';
     foreach ($lyra_supported_languages as $key => $label) {
@@ -235,6 +239,7 @@ function lyra_cfg_draw_pull_down_langs($value = '', $name)
     }
 
     $field .= '</select>';
+
     return $field;
 }
 
@@ -243,7 +248,9 @@ function lyra_cfg_draw_pull_down_multi_langs($value = '', $name)
     global $lyra_supported_languages;
 
     $fieldName = 'configuration[' . lyra_output_string($name) . ']';
-    if (empty($value) && isset($GLOBALS[$fieldName])) $value = stripslashes($GLOBALS[$fieldName]);
+    if (empty($value) && isset($GLOBALS[$fieldName])) {
+        $value = stripslashes($GLOBALS[$fieldName]);
+    }
 
     $langs = empty($value) ? array() : explode(';', $value);
 
@@ -289,7 +296,9 @@ function lyra_cfg_draw_pull_down_cards($value = '', $name)
     global $lyra_supported_cards;
 
     $fieldName = 'configuration[' . lyra_output_string($name) . ']';
-    if (empty($value) && isset($GLOBALS[$fieldName])) $value = stripslashes($GLOBALS[$fieldName]);
+    if (empty($value) && isset($GLOBALS[$fieldName])) {
+        $value = stripslashes($GLOBALS[$fieldName]);
+    }
 
     $cards = empty($value) ? array() : explode(';', $value);
 
@@ -326,6 +335,7 @@ function lyra_cfg_draw_pull_down_cards($value = '', $name)
 JSCODE;
 
     $field .= '<input type="hidden" name="' . lyra_output_string($fieldName) . '" value="' . $value . '">';
+
     return $field;
 }
 
@@ -334,7 +344,9 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
     $name = lyra_output_string($name);
 
     $fieldName = 'configuration[' . $name . ']';
-    if (empty($value) && isset($GLOBALS[$fieldName])) $value = $GLOBALS[$fieldName];
+    if (empty($value) && isset($GLOBALS[$fieldName])) {
+        $value = $GLOBALS[$fieldName];
+    }
 
     $value = stripslashes($value);
 
