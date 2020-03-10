@@ -265,12 +265,17 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             // Admin configuration parameters.
             $configParams = array(
                 'site_id', 'key_test', 'key_prod', 'ctx_mode','sign_algo', 'platform_url', 'available_languages',
-                'capture_delay', 'validation_mode', 'payment_cards', 'redirect_success_timeout',
+                'capture_delay', 'validation_mode', 'redirect_success_timeout',
                 'redirect_success_message', 'redirect_error_timeout', 'redirect_error_message', 'return_mode'
             );
 
             foreach ($configParams as $name) {
                 $lyraMultiRequest->set($name, constant('MODULE_PAYMENT_LYRA_MULTI_' . strtoupper($name)));
+            }
+
+            // Set payment cards.
+            if (lyra_tools::$lyra_plugin_features['cardsoverride']) {
+                $lyraMultiRequest->set('payment_cards', MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS);
             }
 
             // Set redirection auto.
@@ -594,7 +599,11 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $this->_install_query('AVAILABLE_LANGUAGES', '', 6, 22, 'lyra_cfg_draw_pull_down_multi_langs(', 'lyra_get_multi_lang_title');
             $this->_install_query('CAPTURE_DELAY', '', 6, 23);
             $this->_install_query('VALIDATION_MODE', '', 6, 24, 'lyra_cfg_draw_pull_down_validation_modes(', 'lyra_get_validation_mode_title');
-            $this->_install_query('PAYMENT_CARDS', '', 6, 25, 'lyra_cfg_draw_pull_down_cards(', 'lyra_get_card_title');
+
+            if (lyra_tools::$lyra_plugin_features['cardsoverride']) {
+                $this->_install_query('PAYMENT_CARDS', '', 6, 25, 'lyra_cfg_draw_pull_down_cards(', 'lyra_get_card_title');
+            }
+
             $this->_install_query('3DS_MIN_AMOUNT', '', 6, 26);
 
             // Amount restriction.
@@ -653,7 +662,11 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_AVAILABLE_LANGUAGES';
             $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_CAPTURE_DELAY';
             $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_VALIDATION_MODE';
-            $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS';
+
+            if (lyra_tools::$lyra_plugin_features['cardsoverride']) {
+                $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS';
+            }
+
             $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT';
 
             $keys[] = 'MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN';

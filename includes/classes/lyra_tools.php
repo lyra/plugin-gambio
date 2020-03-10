@@ -33,7 +33,8 @@ class lyra_tools
         'shatwo' => true,
 
         'multi' => true,
-        'shatwoonly' => false
+        'shatwoonly' => false,
+        'cardsoverride' => true
     );
 
     public static function getDefault($name)
