@@ -302,7 +302,7 @@ class lyra
     {
         global $order, $lyraResponse, $fromServer;
 
-        $data = ! $fromServer && MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE === 'GET' ? $_GET : $_POST;
+        $data = ! $fromServer && MODULE_PAYMENT_LYRA_RETURN_MODE === 'GET' ? $_GET : $_POST;
         $lyraResponse = new LyraResponse(
             $data,
             MODULE_PAYMENT_LYRA_CTX_MODE,
