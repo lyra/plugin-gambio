@@ -84,14 +84,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Opciones de pago");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Haga clic en el botón \"Agregar\" para configurar una o más opciones de pago.<br /><b>Etiqueta:</b> La etiqueta de opción a mostrar en el frontend.<br /><b>Monto mínimo:</b> Monto mínimo para habilitar la opción de pago.<br /><b>Monto máximo:</b> Monto máximo para habilitar la opción de pago.<b>Afiliación:</b> ID de la afiliación a usar con la opción.<br /><b>Conteo:</b> Número total de pagos.<br /><b>Periodo:</b> Plazo (en días) entre pagos.<br /><b>Primer pago:</b> Monto del primer pago, en porcentaje del monto total. Si está vacío, todos los pagos tendrán el mismo monto.<br /><b>No olvide hacer clic en el botón \"Actualizar\" para guardar sus modificaciones.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Haga clic en el botón \"Agregar\" para configurar una o más opciones de pago.<br /><b>Etiqueta:</b> La etiqueta de opción a mostrar en el frontend.<br /><b>Monto mínimo:</b> Monto mínimo para habilitar la opción de pago.<br /><b>Monto máximo:</b> Monto máximo para habilitar la opción de pago.<b>Afiliación:</b> ID de la afiliación a usar con la opción.<br /><b>Conteo:</b> Número total de vencimientos.<br /><b>Periodo:</b> Plazo (en días) entre vencimientos.<br /><b>Primer vencimiento:</b> Monto del primer vencimiento, en porcentaje del monto total. Si está vacío, todos los vencimientos tendrán el mismo monto.<br /><b>No olvide hacer clic en el botón \"Actualizar\" para guardar sus modificaciones.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Etiqueta");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Monto mínimo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Monto máximo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT', "Afiliación");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT', "Conteo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Periodo");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "Primer pago");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "Primer vencimiento");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Agregar");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Eliminar");
 

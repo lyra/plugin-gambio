@@ -74,15 +74,22 @@ class lyra
         $this->description .= '<br/><br/>';
 
         $this->description .= '<table class="infoBoxContent">';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ' : </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ' : </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
-        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
-        $this->description .= '</table>';
 
-        $this->description .= '<br/>';
-        $this->description .= MODULE_PAYMENT_LYRA_CHECK_URL . '<b>' . HTTP_SERVER . DIR_WS_CATALOG . 'checkout_process_lyra.php</b>';
-        $this->description .= '<hr />';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ': </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ': </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ': </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
+        $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ': </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
+
+        $this->description .= '<tr style="height: 20px;" colspan="2"><td></td></tr>'; // Separator.
+        $this->description .= '<tr>
+                                   <td style="text-align: right; vertical-align: top;">' . MODULE_PAYMENT_LYRA_CHECK_URL . ': </td>
+                                   <td>
+                                       <b style="word-break: break-word;">' . HTTP_SERVER . DIR_WS_CATALOG . 'checkout_process_lyra.php</b><br />' .
+                                       MODULE_PAYMENT_LYRA_CHECK_URL_DESC . '
+                                   </td>
+                               </tr>';
+
+        $this->description .= '</table>';
 
         // Initialize enabled.
         $this->enabled = defined('MODULE_PAYMENT_LYRA_STATUS') && MODULE_PAYMENT_LYRA_STATUS === 'True';
@@ -135,15 +142,15 @@ class lyra
         // Check amount restrictions.
         if (((int) MODULE_PAYMENT_LYRA_AMOUNT_MIN && $order->info['total'] < MODULE_PAYMENT_LYRA_AMOUNT_MIN)
             || ((int) MODULE_PAYMENT_LYRA_AMOUNT_MAX && $order->info['total'] > MODULE_PAYMENT_LYRA_AMOUNT_MAX)) {
-                $this->enabled = false;
-            }
+            $this->enabled = false;
+        }
 
-            // Check currency.
-            $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
-            if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
-                // Currency is not supported, module is not available.
-                $this->enabled = false;
-            }
+        // Check currency.
+        $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
+        if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
+            // Currency is not supported, module is not available.
+            $this->enabled = false;
+        }
     }
 
     /**
@@ -354,7 +361,8 @@ class lyra
 
                 // Update order status.
                 $order->info['order_status'] = MODULE_PAYMENT_LYRA_ORDER_STATUS;
-                $orderStatusQuery = array('orders_id' => $lyraResponse->get('order_id'),
+                $orderStatusQuery = array(
+                    'orders_id' => $lyraResponse->get('order_id'),
                     'orders_status_id' => MODULE_PAYMENT_LYRA_ORDER_STATUS,
                     'date_added' => 'now()',
                     'customer_notified' => '0'
@@ -364,11 +372,11 @@ class lyra
                 // Let checkout_process.php finish the job.
                 return false;
             }
-
         } else {
             // Payment process failed.
-            $order->info['order_status'] ='99';
-            $orderStatusQuery = array('orders_id' => $lyraResponse->get('order_id'),
+            $order->info['order_status'] = '99';
+            $orderStatusQuery = array(
+                'orders_id' => $lyraResponse->get('order_id'),
                 'orders_status_id' => '99',
                 'date_added' => 'now()',
                 'customer_notified' => '0'
@@ -484,6 +492,7 @@ class lyra
         $query .= isset($set_function) ? ", '" . $set_function . "'" : "";
         $query .= isset($use_function) ? ", '" . $use_function . "'" : "";
         $query .= ");";
+
         // Execute.
         xtc_db_query($query);
     }

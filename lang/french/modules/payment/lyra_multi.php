@@ -80,14 +80,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Activé");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_OPTIONS_TITLE', "Options de paiement");
-define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1er paiement:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
+define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1ère échéance:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
 define('MODULE_PAYMENT_LYRA_OPTIONS_LABEL', "Libellé");
 define('MODULE_PAYMENT_LYRA_OPTIONS_MIN_AMOUNT', "Montant min");
 define('MODULE_PAYMENT_LYRA_OPTIONS_MAX_AMOUNT', "Montant max");
 define('MODULE_PAYMENT_LYRA_OPTIONS_CONTRACT', "Contrat");
 define('MODULE_PAYMENT_LYRA_OPTIONS_COUNT', "Nombre");
 define('MODULE_PAYMENT_LYRA_OPTIONS_PERIOD', "Période");
-define('MODULE_PAYMENT_LYRA_OPTIONS_FIRST', "1er paiement");
+define('MODULE_PAYMENT_LYRA_OPTIONS_FIRST', "1ère échéance");
 define('MODULE_PAYMENT_LYRA_OPTIONS_ADD', "Ajouter");
 define('MODULE_PAYMENT_LYRA_OPTIONS_DELETE', "Supprimer");
 

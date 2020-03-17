@@ -84,14 +84,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Payment options");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Click on \"Add\" button to configure one or more payment options.<br /><b>Label:</b> The option label to display on the frontend.<br /><b>Min amount:</b> Minimum amount to enable the payment option.<br /><b>Max amount:</b> Maximum amount to enable the payment option.<br /><b>Contract:</b> ID of the contract to use with the option.<br /><b>Count:</b> Total number of payments.<br /><b>Period:</b> Delay (in days) between payments.<br /><b>1st payment:</b> Amount of first payment, in percentage of total amount. If empty, all payments will have the same amount.<br /><b>Do not forget to click on \"Update\" button to save your modifications.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Click on \"Add\" button to configure one or more payment options.<br /><b>Label:</b> The option label to display on the frontend.<br /><b>Min amount:</b> Minimum amount to enable the payment option.<br /><b>Max amount:</b> Maximum amount to enable the payment option.<br /><b>Contract:</b> ID of the contract to use with the option.<br /><b>Count:</b> Total number of installments.<br /><b>Period:</b> Delay (in days) between installments.<br /><b>1st installment:</b> Amount of first installment, in percentage of total amount. If empty, all installments will have the same amount.<br /><b>Do not forget to click on \"Update\" button to save your modifications.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Label");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Min amount");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Max amount");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT', "Contract");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT', "Count");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Period");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1st payment");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1st installment");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Add");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Delete");
 

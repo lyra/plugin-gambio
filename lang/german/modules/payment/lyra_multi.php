@@ -81,14 +81,14 @@ define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Aktiviert");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Zahlungsoptionen");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Auf die Taste \"Hinzufügen\" aufklicken, um ein oder mehrere Zahlungsoptionen aufzubauen.<br /><b>Name:</b> Beschreibung der Mehrfachzahlung.<br /><b>Mindestbetrag:</b> Mindestbetrag um diese Option zu vorschlagen.<br /><b>Höchstbetrag:</b> Höchstbetrag um die Option anzubieten.< /br><b>Vertrag:</b> Vertrags ID um die Option zu benutzen.<br /><b>Anzahl:</b> Gesamtanzahl der Raten.<br /><b>Zeitraum:</b> Zeit zwischen zwei Zahlungen (in Tages).<br /><b>1. Zahlung:</b> Betrag der ersten Zahlung ins gesamtes Prozent. Wenn leer, alle Zahlungen werden den gleichen Betrag haben.<br /><b>Vergessen Sie nicht, auf die Taste \"Aktualisieren\" zu klicken um Ihre Veränderungen zu speichern.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Auf die Taste \"Hinzufügen\" aufklicken, um ein oder mehrere Zahlungsoptionen aufzubauen.<br /><b>Name:</b> Beschreibung der Mehrfachzahlung.<br /><b>Mindestbetrag:</b> Mindestbetrag um diese Option zu vorschlagen.<br /><b>Höchstbetrag:</b> Höchstbetrag um die Option anzubieten.< /br><b>Vertrag:</b> Vertrags ID um die Option zu benutzen.<br /><b>Anzahl:</b> Gesamtanzahl der Raten.<br /><b>Zeitraum:</b> Zeit zwischen zwei Raten (in Tages).<br /><b>1. Rate:</b> Betrag der ersten Rate ins gesamtes Prozent. Wenn leer, alle Raten werden den gleichen Betrag haben.<br /><b>Vergessen Sie nicht, auf die Taste \"Aktualisieren\" zu klicken um Ihre Veränderungen zu speichern.</b>");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Kennzeichnung");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Mindestbetrag");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Höchstbetrag");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT', "Vertrag");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT', "Anzahl");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Zeitraum");
-define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "Erste Zahlung");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1. Rate");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Hinzufügen");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Löschen");
 

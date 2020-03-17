@@ -81,4 +81,3 @@ define('MODULE_PAYMENT_LYRA_VALUE_True', "Enabled");
 define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office configuration");
 define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatic");
 define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manual");
-

@@ -11,11 +11,11 @@
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_TECHNICAL_ERROR', "Ein Fehler ist während dem Zahlungsvorgang unterlaufen.");
-define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Ihre Bestellung konnte nicht bestätigt werden.  Die Zahlung wurde nicht angenommen.");
-define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "Es konnte keine automatische Benachrichtigung erstellt werden. Bitte prüfen Sie, ob die Benachrichtigung-URL in Ihrem Lyra Expert Back Office korrekt eingerichtet ist?");
-define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Nähere Informationen zu diesem Problem entnehmen Sie bitte der Moduldokumentation:<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Bitte vor dem Weiterlesen aufmerksam lesen &raquo;<br />&nbsp;&nbsp;&nbsp;- Kapitel &laquo; Benachrichtigung-URL Einstellungen &raquo;");
-define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>UMSTELLUNG AUF PRODUKTIONSUMFELD</u></p>Sie möchten wissen, wie Sie auf Produktionsumfeld umstellen können, bitte lesen Sie die Kapitel « Weiter zur Testphase » und « Verschieben des Shops in den Produktionsumfeld » in der Dokumentation des Moduls");
+define('MODULE_PAYMENT_LYRA_TECHNICAL_ERROR', "Ein Fehler ist bei dem Zahlungsvorgang unterlaufen.");
+define('MODULE_PAYMENT_LYRA_PAYMENT_ERROR', "Ihre Zahlung wurde abgelehnt. Bitte führen Sie den Bestellvorgang erneut durch.");
+define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN', "Die automatische Bestätigung hat nicht funktioniert. Haben Sie die Server URL im Lyra Expert Back Office richtig eingestellt?");
+define('MODULE_PAYMENT_LYRA_CHECK_URL_WARN_DETAIL', "Nähere Informationen zu diesem Problem entnehmen Sie bitte der Moduldokumentation:<br />&nbsp;&nbsp;&nbsp;- Kapitel « Bitte vor dem Weiterlesen aufmerksam lesen »<br />&nbsp;&nbsp;&nbsp;- Kapitel « Benachrichtigung-URL Einstellungen »");
+define('MODULE_PAYMENT_LYRA_GOING_INTO_PROD_INFO', "<p><u>UMSTELLUNG AUF PRODUKTIONSUMFELD</u></p>Sie möchten wissen, wie Sie auf Produktionsumfeld umstellen können, bitte lesen Sie die Kapitel « Weiter zur Testphase » und « Verschieben des Shops in den Produktionsumfeld » in der Dokumentation des Moduls.");
 define('MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE', 'Weiterleitung zum Shop in Kürze...');
 
 ## ADMINISTRATION INTERFACE - INFORMATIONS ##
@@ -24,7 +24,8 @@ define('MODULE_PAYMENT_LYRA_DEVELOPED_BY', "Entwickelt von");
 define('MODULE_PAYMENT_LYRA_CONTACT_EMAIL', "E-Mail-Adresse");
 define('MODULE_PAYMENT_LYRA_PLUGIN_VERSION', "Modulversion");
 define('MODULE_PAYMENT_LYRA_GATEWAY_VERSION', "Kompatibel mit Zahlungsschnittstelle");
-define('MODULE_PAYMENT_LYRA_CHECK_URL', "Benachrichtigung-URL zur Eintragung in Ihr Shopsystem:<br />");
+define('MODULE_PAYMENT_LYRA_CHECK_URL', "Benachrichtigung-URL");
+define('MODULE_PAYMENT_LYRA_CHECK_URL_DESC', "URL, die Sie in Ihre Lyra Expert Back Office kopieren sollen > Einstellung > Regeln der Benachrichtigungen.");
 
 ## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
 define('MODULE_PAYMENT_LYRA_LANGUAGE_FRENCH', "Französisch");

@@ -80,15 +80,22 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $this->description .= '<br/><br/>';
 
             $this->description .= '<table class="infoBoxContent">';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ' : </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ' : </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ' : </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
-            $this->description .= '</table>';
 
-            $this->description .= '<br/>';
-            $this->description .= MODULE_PAYMENT_LYRA_CHECK_URL . '<b>' . HTTP_SERVER . DIR_WS_CATALOG . 'checkout_process_lyra.php</b>';
-            $this->description .= '<hr />';
+            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ': </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
+            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ': </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
+            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ': </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
+            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ': </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
+
+            $this->description .= '<tr style="height: 20px;" colspan="2"><td></td></tr>'; // Separator.
+            $this->description .= '<tr>
+                                       <td style="text-align: right; vertical-align: top;">' . MODULE_PAYMENT_LYRA_CHECK_URL . ': </td>
+                                       <td>
+                                           <b style="word-break: break-word;">' . HTTP_SERVER . DIR_WS_CATALOG . 'checkout_process_lyra.php</b><br />' .
+                                           MODULE_PAYMENT_LYRA_CHECK_URL_DESC . '
+                                       </td>
+                                   </tr>';
+
+            $this->description .= '</table>';
 
             // Initialize enabled.
             $this->enabled = defined('MODULE_PAYMENT_LYRA_MULTI_STATUS') && MODULE_PAYMENT_LYRA_MULTI_STATUS === 'True';
@@ -141,21 +148,21 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             // Check amount restrictions.
             if (((int) MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN && $order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MIN)
                 || ((int) MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX && $order->info['total'] > MODULE_PAYMENT_LYRA_MULTI_AMOUNT_MAX)) {
-                    $this->enabled = false;
-                }
+                $this->enabled = false;
+            }
 
-                // Check currency.
-                $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
-                if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
-                    // Currency is not supported, module is not available.
-                    $this->enabled = false;
-                }
+            // Check currency.
+            $defaultCurrency = (defined('USE_DEFAULT_LANGUAGE_CURRENCY') && USE_DEFAULT_LANGUAGE_CURRENCY === 'true') ? LANGUAGE_CURRENCY : DEFAULT_CURRENCY;
+            if (! LyraApi::findCurrencyByAlphaCode($order->info['currency']) && ! LyraApi::findCurrencyByAlphaCode($defaultCurrency)) {
+                // Currency is not supported, module is not available.
+                $this->enabled = false;
+            }
 
-                // Check multi payment options.
-                $options = $this->get_available_options();
-                if (count($options) <= 0) {
-                    $this->enabled = false;
-                }
+            // Check multi payment options.
+            $options = $this->get_available_options();
+            if (count($options) <= 0) {
+                $this->enabled = false;
+            }
         }
 
         function get_available_options()
@@ -165,8 +172,8 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $amount = $order->info['total'];
 
             $options = MODULE_PAYMENT_LYRA_MULTI_OPTIONS ?
-                            json_decode(stripslashes(MODULE_PAYMENT_LYRA_MULTI_OPTIONS), true) :
-                            array();
+                json_decode(stripslashes(MODULE_PAYMENT_LYRA_MULTI_OPTIONS), true) :
+                array();
 
             $availOptions = array();
             if (is_array($options) && count($options) > 0) {
@@ -177,9 +184,9 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
                     if ((! $option['min_amount'] || $amount >= $option['min_amount'])
                         && (! $option['max_amount'] || $amount <= $option['max_amount'])) {
-                            // Option will be available.
-                            $availOptions[$code] = $option;
-                        }
+                        // Option will be available.
+                        $availOptions[$code] = $option;
+                    }
                 }
             }
 
@@ -365,13 +372,13 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $option = is_array($options[$_POST['lyra_multi_option']]) ? $options[$_POST['lyra_multi_option']] : array();
 
             $first = (key_exists('first', $option) && $option['first'] !== '') ?
-                $lyraCurrency->convertAmountToInteger(($option['first'] / 100) * $total) : NULL;
+                $lyraCurrency->convertAmountToInteger(($option['first'] / 100) * $total) : null;
 
             // Override cb contract.
             $data['contracts'] = $option['contract'] ? 'CB=' . $option['contract'] : null;
 
             $lyraMultiRequest->setFromArray($data);
-            $lyraMultiRequest->setMultiPayment(NULL /* use already set amount */, $first, $option['count'], $option['period']);
+            $lyraMultiRequest->setMultiPayment(null /* use already set amount */, $first, $option['count'], $option['period']);
 
             return $lyraMultiRequest->getRequestHtmlFields();
         }
@@ -443,11 +450,11 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                     // Let checkout_process.php finish the job.
                     return false;
                 }
-
             } else {
                 // Payment process failed.
-                $order->info['order_status'] ='99';
-                $orderStatusQuery = array('orders_id' => $lyraMultiResponse->get('order_id'),
+                $order->info['order_status'] = '99';
+                $orderStatusQuery = array(
+                    'orders_id' => $lyraMultiResponse->get('order_id'),
                     'orders_status_id' => '99',
                     'date_added' => 'now()',
                     'customer_notified' => '0'
@@ -563,6 +570,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $query .= isset($set_function) ? ", '" . $set_function . "'" : "";
             $query .= isset($use_function) ? ", '" . $use_function . "'" : "";
             $query .= ");";
+
             // Execute.
             xtc_db_query($query);
         }
@@ -587,7 +595,6 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 $function = "xtc_cfg_select_option(array(\'TEST\', \'PRODUCTION\'),";
                 $this->_install_query('KEY_TEST', lyra_tools::getDefault('KEY_TEST'), 6, 11);
             }
-
 
             $this->_install_query('KEY_PROD', lyra_tools::getDefault('KEY_PROD'), 6, 12);
             $this->_install_query('CTX_MODE', lyra_tools::getDefault('CTX_MODE'), 6, 13, $function);
