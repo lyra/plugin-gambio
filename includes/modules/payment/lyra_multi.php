@@ -227,11 +227,29 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             $first = true;
             foreach ($this->get_available_options() as $code => $option) {
-                $styleTitle = $first ? ' style="display: block; margin-top: -30px;"' : '';
-                $styleRadio = $first ? 'style="margin-top: -19px;"' : 'style="margin-top: 10px;"';
+                $styleTitle = $first ? ' style="display: block; margin-top: -19px; margin-left: -125px; width: 150%;"' : ' style="margin-top: -20px; margin-left: -125px; width: 150%; display: block;"';
+                $styleRadio = $first ? 'style="margin-top: -19px; margin-left: -150px"' : 'style="margin-left: -150px; margin-top: -20px;"';
+                $field = xtc_draw_radio_field('lyra_multi_option', $code, $first, $styleRadio) . "<b$styleTitle onclick=\"$('input[name=lyra_multi_option][value=$code]').click();\" >" . $option['label'] . "</b>";
+                if ($first) {
+                    $field .=  '<script>
+                        window.onload = function() {
+                            var multi_radio = $("input[type=radio][name=payment][value=lyra_multi]");
+                            if (multi_radio.length) {
+                                if(! multi_radio.is(":checked")) {
+                                    $("li.lyra_multi").hide();
+                                    setTimeout(function(){
+                                        $("li.lyra_multi").removeClass("active");
+                                        $("li.lyra_multi").show();
+                                    }, 300);
+                                }
+                            }
+                        }
+                     </script>';
+                }
+
                 $selection['fields'][] = array(
-                    'title' => "<b$styleTitle>" . $option['label'] . "</b>",
-                    'field' => xtc_draw_radio_field('lyra_multi_option', $code, $first, $styleRadio),
+                    'title' => '<b style="display:none"></b>',
+                    'field' => $field
                 );
 
                 $first = false;
