@@ -302,6 +302,10 @@ function lyra_cfg_draw_pull_down_cards($value = '', $name)
 
     $cards = empty($value) ? array() : explode(';', $value);
 
+    if(lyra_output_string($name) === 'MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS') {
+        $lyra_supported_cards = lyra_tools::getSupportedMultiCardTypes();
+    }
+
     $field = '<select style="height: initial;" size="5" name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessCards()">';
     foreach ($lyra_supported_cards as $key => $label) {
         $field .= '<option value="' . $key . '"';

@@ -49,4 +49,21 @@ class lyra_tools
 
         return self::$$name;
     }
+
+    public static function getSupportedMultiCardTypes()
+    {
+        $multi_cards = array(
+            'AMEX', 'CB', 'DINERS', 'DISCOVER', 'E-CARTEBLEUE', 'JCB', 'MASTERCARD',
+            'PRV_BDP', 'PRV_BDT', 'PRV_OPT', 'PRV_SOC', 'VISA', 'VISA_ELECTRON', 'VPAY'
+        );
+
+        $cards = array();
+        foreach (LyraApi::getSupportedCardTypes() as $code => $label) {
+            if (in_array($code, $multi_cards)) {
+                $cards[$code] = $label;
+            }
+        }
+
+        return $cards;
+    }
 }
