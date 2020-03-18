@@ -545,7 +545,7 @@ class lyra
         $this->_install_query('REDIRECT_ERROR_TIMEOUT', 5, 6, 43);
         $this->_install_query('REDIRECT_ERROR_MESSAGE', MODULE_PAYMENT_LYRA_REDIRECT_MESSAGE, 6, 44);
         $this->_install_query('RETURN_MODE', 'GET', 6, 45, "xtc_cfg_select_option(array(\'GET\', \'POST\'), ");
-        $this->_install_query('ORDER_STATUS', '0', 6, 48, 'xtc_cfg_pull_down_order_statuses(', 'xtc_get_order_status_name');
+        $this->_install_query('ORDER_STATUS', '1', 6, 48, 'xtc_cfg_pull_down_order_statuses(', 'xtc_get_order_status_name');
     }
 
     /**
