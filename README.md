@@ -17,6 +17,7 @@ To install the new module version:
 - Copy the extracted folder content to your Gambio root folder.
 - Go to `Modules > Payment Systems > Miscellaneous > added modules` menu in the Gambio backend.
 - Click on `Install` button.
+- Go to `Toolbox > Cache` menu, then click on the button `Execute` corresponding to `Empty modules cache` option.
 
 ## Configuration
 
