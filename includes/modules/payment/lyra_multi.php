@@ -81,14 +81,14 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             $this->description .= '<table class="infoBoxContent">';
 
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ': </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ': </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ': </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
-            $this->description .= '<tr><td style="text-align: right;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ': </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
+            $this->description .= '<tr><td style="text-align: right; padding-right: 10px;">' . MODULE_PAYMENT_LYRA_DEVELOPED_BY . ': </td><td><a href="https://www.lyra.com/" target="_blank"><b>Lyra Network</b></a></td></tr>';
+            $this->description .= '<tr><td style="text-align: right; padding-right: 10px;">' . MODULE_PAYMENT_LYRA_CONTACT_EMAIL . ': </td><td><a href="mailto:' . lyra_tools::getDefault('SUPPORT_EMAIL') . '"><b>' . lyra_tools::getDefault('SUPPORT_EMAIL') . '</b></a></td></tr>';
+            $this->description .= '<tr><td style="text-align: right; padding-right: 10px;">' . MODULE_PAYMENT_LYRA_PLUGIN_VERSION . ': </td><td><b>' . lyra_tools::getDefault('PLUGIN_VERSION') . '</b></td></tr>';
+            $this->description .= '<tr><td style="text-align: right; padding-right: 10px;">' . MODULE_PAYMENT_LYRA_GATEWAY_VERSION . ': </td><td><b>' . lyra_tools::getDefault('GATEWAY_VERSION') . '</b></td></tr>';
 
-            $this->description .= '<tr style="height: 20px;" colspan="2"><td></td></tr>'; // Separator.
+            $this->description .= '<tr colspan="2"><td style="height: 20px;"></td></tr>'; // Separator.
             $this->description .= '<tr>
-                                       <td style="text-align: right; vertical-align: top;">' . MODULE_PAYMENT_LYRA_CHECK_URL . ': </td>
+                                       <td style="text-align: right; padding-right: 10px; vertical-align: top;">' . MODULE_PAYMENT_LYRA_CHECK_URL . ': </td>
                                        <td>
                                            <b style="word-break: break-word;">' . HTTP_SERVER . DIR_WS_CATALOG . 'checkout_process_lyra.php</b><br />' .
                                            MODULE_PAYMENT_LYRA_CHECK_URL_DESC . '
