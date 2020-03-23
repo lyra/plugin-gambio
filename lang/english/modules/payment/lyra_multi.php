@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Payment in installments");
-define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Payment by credit card in installments");
+define('MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE', "Lyra Collect - Payment in installments");
+define('MODULE_PAYMENT_LYRA_MULTI_FRONT_TITLE', "Payment by credit card in installments");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activation");
@@ -47,7 +47,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_CAPTURE_DELAY_TITLE', "Capture delay");
 define('MODULE_PAYMENT_LYRA_MULTI_CAPTURE_DELAY_DESC', "The number of days before the bank capture (adjustable in your Lyra Expert Back Office).");
 define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_MODE_TITLE', "Validation mode");
 define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_MODE_DESC', "If manual is selected, you will have to confirm payments manually in your Lyra Expert Back Office.");
-define('MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS_TITLE', "Card Types");
+define('MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS_TITLE', "Card types");
 define('MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS_DESC', "The card type(s) that can be used for the payment. Select none to use gateway configuration.");
 define('MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT_TITLE', "Disable 3DS");
 define('MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT_DESC', "Amount below which 3DS will be disabled. Needs subscription to selective 3DS option. For more information, refer to the module documentation.");
@@ -74,14 +74,6 @@ define('MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE_DESC', "Method that will be used f
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
 
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_False', "Disabled");
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Enabled");
-
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_DEFAULT', "Lyra Expert Back Office configuration");
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_0', "Automatic");
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
-
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Payment options");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Click on \"Add\" button to configure one or more payment options.<br /><b>Label:</b> The option label to display on the frontend.<br /><b>Min amount:</b> Minimum amount to enable the payment option.<br /><b>Max amount:</b> Maximum amount to enable the payment option.<br /><b>Contract:</b> ID of the contract to use with the option.<br /><b>Count:</b> Total number of installments.<br /><b>Period:</b> Delay (in days) between installments.<br /><b>1st installment:</b> Amount of first installment, in percentage of total amount. If empty, all installments will have the same amount.<br /><b>Do not forget to click on \"Update\" button to save your modifications.</b>");
@@ -94,5 +86,8 @@ define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Period");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1st installment");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Add");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Delete");
+
+define('MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION', "Your payment option");
+define('MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS', "Choose your payment option");
 
 define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATTENTION: The payment in installments feature activation is subject to the prior agreement of Société Générale.<br />If you enable this feature while you have not the associated option, an error 10000 – INSTALLMENTS_NOT_ALLOWED or 07 - PAYMENT_CONFIG will occur and the buyer will not be able to pay.");

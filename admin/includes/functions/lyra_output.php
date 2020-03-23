@@ -302,7 +302,7 @@ function lyra_cfg_draw_pull_down_cards($value = '', $name)
 
     $cards = empty($value) ? array() : explode(';', $value);
 
-    if(lyra_output_string($name) === 'MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS') {
+    if (lyra_output_string($name) === 'MODULE_PAYMENT_LYRA_MULTI_PAYMENT_CARDS') {
         $lyra_supported_cards = lyra_tools::getSupportedMultiCardTypes();
     }
 
@@ -389,7 +389,6 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
             $field .= "\n" . 'lyraAddOption("' . $name . '", "' . $code . '", ' . json_encode($option) . ');' . "\n";
         }
     }
-
 
     $deleteTxt = MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE;
 

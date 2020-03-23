@@ -11,9 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-
-define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Zahlung in mehrere Optionen");
-define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Ratenzahlung mit EC-/Kreditkarte");
+define('MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE', "Lyra Collect - Zahlung in mehrere Optionen");
+define('MODULE_PAYMENT_LYRA_MULTI_FRONT_TITLE', "Ratenzahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Aktiviert");
@@ -75,10 +74,6 @@ define('MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE_DESC', 'Methode, die für die Übe
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_TITLE', "Bestellungen Status");
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_DESC', "Der Status der bezahlten Bestellungen durch dieses Beszahlungsmittel definieren.");
 
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_False', "Deaktiviert");
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Aktiviert");
-
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Zahlungsoptionen");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Auf die Taste \"Hinzufügen\" aufklicken, um ein oder mehrere Zahlungsoptionen aufzubauen.<br /><b>Name:</b> Beschreibung der Mehrfachzahlung.<br /><b>Mindestbetrag:</b> Mindestbetrag um diese Option zu vorschlagen.<br /><b>Höchstbetrag:</b> Höchstbetrag um die Option anzubieten.< /br><b>Vertrag:</b> Vertrags ID um die Option zu benutzen.<br /><b>Anzahl:</b> Gesamtanzahl der Raten.<br /><b>Zeitraum:</b> Zeit zwischen zwei Raten (in Tages).<br /><b>1. Rate:</b> Betrag der ersten Rate ins gesamtes Prozent. Wenn leer, alle Raten werden den gleichen Betrag haben.<br /><b>Vergessen Sie nicht, auf die Taste \"Aktualisieren\" zu klicken um Ihre Veränderungen zu speichern.</b>");
@@ -91,5 +86,8 @@ define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Zeitraum");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1. Rate");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Hinzufügen");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Löschen");
+
+define('MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION', "Ihre Zahlungsoptio");
+define('MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS', "Wählen Sie Ihre Zahlungsoption");
 
 define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATTENTION: The payment in installments feature activation is subject to the prior agreement of Société Générale.<br />If you enable this feature while you have not the associated option, an error 10000 – INSTALLMENTS_NOT_ALLOWED or 07 - PAYMENT_CONFIG will occur and the buyer will not be able to pay.");

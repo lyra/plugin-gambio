@@ -22,7 +22,7 @@ $language = $_SESSION['language'];
 include_once (DIR_FS_CATALOG . "lang/$language/modules/payment/lyra.php");
 
 /**
- * Main class implementing Lyra Collect payment module for OSC.
+ * Main class implementing Lyra Collect payment module.
  */
 class lyra
 {
@@ -66,7 +66,7 @@ class lyra
         $this->code = 'lyra';
 
         // Initialize title
-        $this->title = MODULE_PAYMENT_LYRA_TEXT_TITLE;
+        $this->title = MODULE_PAYMENT_LYRA_BACK_TITLE;
 
         // Initialize description.
         $this->description  = '';
@@ -123,7 +123,7 @@ class lyra
         // Check customer zone.
         if ((int) MODULE_PAYMENT_LYRA_ZONE > 0) {
             $flag = false;
-            $check_query = xtc_db_query("SELECT zone_id FROM " . TABLE_ZONES_TO_GEO_ZONES .
+            $check_query = xtc_db_query('SELECT zone_id FROM ' . TABLE_ZONES_TO_GEO_ZONES .
                 " WHERE geo_zone_id = '" . MODULE_PAYMENT_LYRA_ZONE .
                 "' AND zone_country_id = '" . $order->billing['country']['id'] .
                 "' ORDER BY zone_id ASC;");
@@ -170,7 +170,7 @@ class lyra
     {
         return array(
             'id' => $this->code,
-            'module' => MODULE_PAYMENT_LYRA_SHORT_TITLE,
+            'module' => MODULE_PAYMENT_LYRA_FRONT_TITLE,
             'logo_url' => xtc_href_link('images/lyra.png', '', 'SSL', false, false, false, true, true)
         );
     }
@@ -224,7 +224,7 @@ class lyra
         $lyraRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_' . strtoupper('redirect_enabled')) === 'True' ? 1 : 0);
 
         // Get the shop language code.
-        $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
+        $query = xtc_db_query('SELECT code FROM ' . TABLE_LANGUAGES . ' WHERE languages_id = ' . $_SESSION['languages_id']);
         $langData = xtc_db_fetch_array($query);
         $lyraLanguage = LyraApi::isSupportedLanguage($langData['code']) ?
             strtolower($langData['code']) :
@@ -247,7 +247,7 @@ class lyra
 
         // Activate 3ds?
         $threedsMpi = null;
-        if (MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT) {
+        if (MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT && ($order->info['total'] < MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT)) {
             $threedsMpi = '2';
         }
 
@@ -451,7 +451,7 @@ class lyra
     function check()
     {
         if (! isset($this->_check)) {
-            $check_query = xtc_db_query("SELECT configuration_value FROM " . TABLE_CONFIGURATION .
+            $check_query = xtc_db_query('SELECT configuration_value FROM ' . TABLE_CONFIGURATION .
                 " WHERE configuration_key = 'MODULE_PAYMENT_LYRA_STATUS'");
             $this->_check = xtc_db_num_rows($check_query);
         }
@@ -480,18 +480,18 @@ class lyra
         $prefix = 'MODULE_PAYMENT_LYRA_';
 
         // Build query.
-        $query  = "";
-        $query .= "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added";
-        $query .= isset($set_function) ? ", set_function" : "";
-        $query .= isset($use_function) ? ", use_function" : "";
+        $query  = '';
+        $query .= 'INSERT INTO ' . TABLE_CONFIGURATION . ' (configuration_key, configuration_value, configuration_group_id, sort_order, date_added';
+        $query .= isset($set_function) ? ', set_function' : '';
+        $query .= isset($use_function) ? ', use_function' : '';
         $query .= ") VALUES ('" . $prefix . $key . "'";
         $query .= ", '" . $value . "'";
         $query .= ", '" . $group_id . "'";
         $query .= ", '" . $sort_order . "'";
-        $query .= ", NOW()";
-        $query .= isset($set_function) ? ", '" . $set_function . "'" : "";
-        $query .= isset($use_function) ? ", '" . $use_function . "'" : "";
-        $query .= ");";
+        $query .= ', NOW()';
+        $query .= isset($set_function) ? ", '" . $set_function . "'" : '';
+        $query .= isset($use_function) ? ", '" . $use_function . "'" : '';
+        $query .= ');';
 
         // Execute.
         xtc_db_query($query);
@@ -556,7 +556,7 @@ class lyra
         $keys = $this->keys();
 
         foreach ($keys as $key) {
-            xtc_db_query("DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = '$key'");
+            xtc_db_query('DELETE FROM ' . TABLE_CONFIGURATION . " WHERE configuration_key = '$key'");
         }
     }
 
@@ -617,7 +617,7 @@ class lyra
      */
     function _guess_order_id()
     {
-        $order_query = xtc_db_query("SELECT MAX(orders_id) FROM " . TABLE_ORDERS);
+        $order_query = xtc_db_query('SELECT MAX(orders_id) FROM ' . TABLE_ORDERS);
         $order_data = xtc_db_fetch_array($order_query);
         $order_id = reset($order_data);
 
@@ -637,7 +637,7 @@ class lyra
         $customerId = $lyraResponse->get('cust_id');
         $transId = $lyraResponse->get('trans_id');
 
-        $query = xtc_db_query("SELECT * FROM " . TABLE_ORDERS .
+        $query = xtc_db_query('SELECT * FROM ' . TABLE_ORDERS .
             " WHERE orders_id >= $orderId" .
             " AND customers_id = $customerId" .
             " AND cc_owner LIKE '%Transaction: " . $transId. "'");

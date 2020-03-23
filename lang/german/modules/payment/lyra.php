@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Standardzahlung");
-define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Zahlung mit EC-/Kreditkarte");
+define('MODULE_PAYMENT_LYRA_BACK_TITLE', "Lyra Collect - Standardzahlung");
+define('MODULE_PAYMENT_LYRA_FRONT_TITLE', "Zahlung mit EC-/Kreditkarte");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Aktiviert");
@@ -73,11 +73,3 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', 'Übermittlungs-Modus');
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', 'Methode, die für die Übermittlung des Zahlungsvorgang benützt wird, kommt aus der Bezahlungsseite zu Ihrem Geschäft.');
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Bestellungen Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Der Status der bezahlten Bestellungen durch dieses Beszahlungsmittel definieren.");
-
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_VALUE_False', "Deaktiviert");
-define('MODULE_PAYMENT_LYRA_VALUE_True', "Aktiviert");
-
-define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office Konfiguration");
-define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatisch");
-define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manuell");

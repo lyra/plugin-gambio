@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Standard payment");
-define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Payment by credit card");
+define('MODULE_PAYMENT_LYRA_BACK_TITLE', "Lyra Collect - Standard payment");
+define('MODULE_PAYMENT_LYRA_FRONT_TITLE', "Payment by credit card");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Activation");
@@ -47,7 +47,7 @@ define('MODULE_PAYMENT_LYRA_CAPTURE_DELAY_TITLE', "Capture delay");
 define('MODULE_PAYMENT_LYRA_CAPTURE_DELAY_DESC', "The number of days before the bank capture (adjustable in your Lyra Expert Back Office).");
 define('MODULE_PAYMENT_LYRA_VALIDATION_MODE_TITLE', "Validation mode");
 define('MODULE_PAYMENT_LYRA_VALIDATION_MODE_DESC', "If manual is selected, you will have to confirm payments manually in your Lyra Expert Back Office.");
-define('MODULE_PAYMENT_LYRA_PAYMENT_CARDS_TITLE', "Card Types");
+define('MODULE_PAYMENT_LYRA_PAYMENT_CARDS_TITLE', "Card types");
 define('MODULE_PAYMENT_LYRA_PAYMENT_CARDS_DESC', "The card type(s) that can be used for the payment. Select none to use gateway configuration.");
 define('MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT_TITLE', "Disable 3DS");
 define('MODULE_PAYMENT_LYRA_3DS_MIN_AMOUNT_DESC', "Amount below which 3DS will be disabled. Needs subscription to selective 3DS option. For more information, refer to the module documentation.");
@@ -73,11 +73,3 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', "Return mode");
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', "Method that will be used for transmitting the payment result from the payment page to your shop.");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
-
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_VALUE_False', "Disabled");
-define('MODULE_PAYMENT_LYRA_VALUE_True', "Enabled");
-
-define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Lyra Expert Back Office configuration");
-define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatic");
-define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manual");

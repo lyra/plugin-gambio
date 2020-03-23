@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Pago en cuotas");
-define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Pago con tarjeta de crédito en cuotas");
+define('MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE', "Lyra Collect - Pago en cuotas");
+define('MODULE_PAYMENT_LYRA_MULTI_FRONT_TITLE', "Pago con tarjeta de crédito en cuotas");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activación");
@@ -74,14 +74,6 @@ define('MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE_DESC', "Método que se usará para
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
 
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_False', "Deshabilitado");
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Habilitado");
-
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_DEFAULT', "Configuración del Back Office Lyra Expert");
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_0', "Automático");
-define('MODULE_PAYMENT_LYRA_MULTI_VALIDATION_1', "Manual");
-
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Opciones de pago");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Haga clic en el botón \"Agregar\" para configurar una o más opciones de pago.<br /><b>Etiqueta:</b> La etiqueta de opción a mostrar en el frontend.<br /><b>Monto mínimo:</b> Monto mínimo para habilitar la opción de pago.<br /><b>Monto máximo:</b> Monto máximo para habilitar la opción de pago.<b>Afiliación:</b> ID de la afiliación a usar con la opción.<br /><b>Conteo:</b> Número total de vencimientos.<br /><b>Periodo:</b> Plazo (en días) entre vencimientos.<br /><b>Primer vencimiento:</b> Monto del primer vencimiento, en porcentaje del monto total. Si está vacío, todos los vencimientos tendrán el mismo monto.<br /><b>No olvide hacer clic en el botón \"Actualizar\" para guardar sus modificaciones.</b>");
@@ -94,5 +86,8 @@ define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Periodo");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "Primer vencimiento");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Agregar");
 define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Eliminar");
+
+define('MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION', "Su opción de pago");
+define('MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS', "Elija su opción de pago");
 
 define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATENCIÓN: La activación de la función de pago en cuotas está sujeta al acuerdo previo de Societé Générale.<br />Si habilita esta función cuando no tiene la opción asociada, ocurrirá un error 10000 – INSTALLMENTS_NOT_ALLOWED o 07 - PAYMENT_CONFIG y el comprador no podrá pagar.");

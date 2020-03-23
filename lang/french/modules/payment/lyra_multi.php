@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE', "Lyra Collect - Paiement en plusieurs fois");
-define('MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE', "Paiement par carte bancaire en plusieurs fois");
+define('MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE', "Lyra Collect - Paiement en plusieurs fois");
+define('MODULE_PAYMENT_LYRA_MULTI_FRONT_TITLE', "Paiement par carte bancaire en plusieurs fois");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_MULTI_STATUS_TITLE', "Activation");
@@ -74,10 +74,6 @@ define('MODULE_PAYMENT_LYRA_MULTI_RETURN_MODE_DESC', "Façon dont l'acheteur tra
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_TITLE', "Statut des commandes");
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_DESC', "Définir le statut des commandes payées par ce mode de paiement.");
 
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_False', "Désactivé");
-define('MODULE_PAYMENT_LYRA_MULTI_VALUE_True', "Activé");
-
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
 define('MODULE_PAYMENT_LYRA_OPTIONS_TITLE', "Options de paiement");
 define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1ère échéance:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
@@ -90,5 +86,8 @@ define('MODULE_PAYMENT_LYRA_OPTIONS_PERIOD', "Période");
 define('MODULE_PAYMENT_LYRA_OPTIONS_FIRST', "1ère échéance");
 define('MODULE_PAYMENT_LYRA_OPTIONS_ADD', "Ajouter");
 define('MODULE_PAYMENT_LYRA_OPTIONS_DELETE', "Supprimer");
+
+define('MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION', "Votre option de paiement");
+define('MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS', "Choisissez votre moyen de paiement");
 
 define('MODULE_PAYMENT_LYRA_MULTI_WARNING', "ATTENTION: L'activation de la fonctionnalité de paiement en nfois est soumise à accord préalable de Société Générale.<br />Si vous activez cette fonctionnalité alors que vous ne disposez pas de cette option, une erreur 10000 – INSTALLMENTS_NOT_ALLOWED ou 07 - PAYMENT_CONFIG sera générée et l'acheteur sera dans l'incapacité de payer.");

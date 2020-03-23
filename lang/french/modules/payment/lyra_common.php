@@ -41,3 +41,10 @@ define('MODULE_PAYMENT_LYRA_LANGUAGE_SWEDISH', "Suédois");
 define('MODULE_PAYMENT_LYRA_LANGUAGE_RUSSIAN', "Russe");
 define('MODULE_PAYMENT_LYRA_LANGUAGE_POLISH', "Polonais");
 define('MODULE_PAYMENT_LYRA_LANGUAGE_TURKISH', "Turc");
+
+define('MODULE_PAYMENT_LYRA_VALUE_False', "Désactivé");
+define('MODULE_PAYMENT_LYRA_VALUE_True', "Activé");
+
+define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Configuration Back Office Lyra Expert");
+define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automatique");
+define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manuel");

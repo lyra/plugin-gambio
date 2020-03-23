@@ -25,7 +25,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
     include_once(DIR_FS_CATALOG . "lang/$language/modules/payment/lyra_multi.php");
 
     /**
-     * Main class implementing Lyra Collect multiple payment module for OSC.
+     * Main class implementing Lyra Collect multiple payment module.
      */
     class lyra_multi
     {
@@ -69,7 +69,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $this->code = 'lyra_multi';
 
             // Initialize title.
-            $this->title = MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE;
+            $this->title = MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE;
 
             // Initialize description.
             $this->description  = lyra_tools::$lyra_plugin_features['restrictmulti'] ?
@@ -129,7 +129,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             // Check customer zone.
             if ((int) MODULE_PAYMENT_LYRA_MULTI_ZONE > 0) {
                 $flag = false;
-                $check_query = xtc_db_query("SELECT zone_id FROM " . TABLE_ZONES_TO_GEO_ZONES .
+                $check_query = xtc_db_query('SELECT zone_id FROM ' . TABLE_ZONES_TO_GEO_ZONES .
                     " WHERE geo_zone_id = '" . MODULE_PAYMENT_LYRA_MULTI_ZONE .
                     "' AND zone_country_id = '" . $order->billing['country']['id'] .
                     "' ORDER BY zone_id ASC;");
@@ -160,7 +160,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             // Check multi payment options.
             $options = $this->get_available_options();
-            if (count($options) <= 0) {
+            if (empty($options)) {
                 $this->enabled = false;
             }
         }
@@ -215,40 +215,25 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             $selection = array(
                 'id' => $this->code,
-                'module' => MODULE_PAYMENT_LYRA_MULTI_SHORT_TITLE,
+                'module' => MODULE_PAYMENT_LYRA_MULTI_FRONT_TITLE,
                 'logo_url' => xtc_href_link('images/lyra_multi.png', '', 'SSL', false, false, false, true, true)
             );
 
+            $options = $this->get_available_options();
 
             $selection['fields'][] = array(
-                'title' => '<b style="display:none"></b>',
-                'field' => xtc_draw_radio_field('lyra_multi_hidden', '', false, 'style="display:none"'),
+                'title' => count($options) > 1 ? MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS : MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION,
+                'field' => ''
             );
 
             $first = true;
-            foreach ($this->get_available_options() as $code => $option) {
-                $styleTitle = $first ? ' style="display: block; margin-top: -19px; margin-left: -125px; width: 150%;"' : ' style="margin-top: -20px; margin-left: -125px; width: 150%; display: block;"';
-                $styleRadio = $first ? 'style="margin-top: -19px; margin-left: -150px"' : 'style="margin-left: -150px; margin-top: -20px;"';
-                $field = xtc_draw_radio_field('lyra_multi_option', $code, $first, $styleRadio) . "<b$styleTitle onclick=\"$('input[name=lyra_multi_option][value=$code]').click();\" >" . $option['label'] . "</b>";
-                if ($first) {
-                    $field .=  '<script>
-                        window.onload = function() {
-                            var multi_radio = $("input[type=radio][name=payment][value=lyra_multi]");
-                            if (multi_radio.length) {
-                                if(! multi_radio.is(":checked")) {
-                                    $("li.lyra_multi").hide();
-                                    setTimeout(function(){
-                                        $("li.lyra_multi").removeClass("active");
-                                        $("li.lyra_multi").show();
-                                    }, 300);
-                                }
-                            }
-                        }
-                     </script>';
-                }
+            foreach ($options as $code => $option) {
+                $attibutes = 'id="lyra_multi_option_' . $code . '" style="margin-left: 20px; position: relative;" onclick="event.stopPropagation()" onchange="event.stopPropagation()"';
+                $field = xtc_draw_radio_field('lyra_multi_option', $code, $first, $attibutes);
+                $field .= '<label style="padding-left: 10px;" for="lyra_multi_option_' . $code . '">' . $option['label'] . '</label>';
 
                 $selection['fields'][] = array(
-                    'title' => '<b style="display:none"></b>',
+                    'title' => '',
                     'field' => $field
                 );
 
@@ -307,7 +292,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $lyraMultiRequest->set('redirect_enabled', constant('MODULE_PAYMENT_LYRA_MULTI_' . strtoupper('redirect_enabled')) === 'True' ? 1 : 0);
 
             // Get the shop language code.
-            $query = xtc_db_query("SELECT code FROM " . TABLE_LANGUAGES . " WHERE languages_id = " . $_SESSION['languages_id']);
+            $query = xtc_db_query('SELECT code FROM ' . TABLE_LANGUAGES . ' WHERE languages_id = ' . $_SESSION['languages_id']);
             $langData = xtc_db_fetch_array($query);
             $lyraLanguage = LyraApi::isSupportedLanguage($langData['code']) ?
                 strtolower($langData['code']) :
@@ -330,7 +315,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
 
             // Activate 3ds?
             $threedsMpi = null;
-            if (MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT !== '' && $order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT) {
+            if (MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT && ($order->info['total'] < MODULE_PAYMENT_LYRA_MULTI_3DS_MIN_AMOUNT)) {
                 $threedsMpi = '2';
             }
 
@@ -547,7 +532,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
         function check()
         {
             if (! isset($this->_check)) {
-                $check_query = xtc_db_query("SELECT configuration_value FROM " . TABLE_CONFIGURATION .
+                $check_query = xtc_db_query('SELECT configuration_value FROM ' . TABLE_CONFIGURATION .
                     " WHERE configuration_key = 'MODULE_PAYMENT_LYRA_MULTI_STATUS'");
                 $this->_check = xtc_db_num_rows($check_query);
             }
@@ -573,21 +558,21 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function _install_query($key, $value, $group_id, $sort_order, $set_function = null, $use_function = null)
         {
-            $prefix = 'MODULE_PAYMENT_LYRA_';
+            $prefix = 'MODULE_PAYMENT_LYRA_MULTI_';
 
             // Build query.
-            $query  = "";
-            $query .= "INSERT INTO " . TABLE_CONFIGURATION . " (configuration_key, configuration_value, configuration_group_id, sort_order, date_added";
-            $query .= isset($set_function) ? ", set_function" : "";
-            $query .= isset($use_function) ? ", use_function" : "";
-            $query .= ") VALUES ('" . $prefix . 'MULTI_' . $key . "'";
+            $query  = '';
+            $query .= 'INSERT INTO ' . TABLE_CONFIGURATION . ' (configuration_key, configuration_value, configuration_group_id, sort_order, date_added';
+            $query .= isset($set_function) ? ', set_function' : '';
+            $query .= isset($use_function) ? ', use_function' : '';
+            $query .= ") VALUES ('" . $prefix . $key . "'";
             $query .= ", '" . $value . "'";
             $query .= ", '" . $group_id . "'";
             $query .= ", '" . $sort_order . "'";
-            $query .= ", NOW()";
-            $query .= isset($set_function) ? ", '" . $set_function . "'" : "";
-            $query .= isset($use_function) ? ", '" . $use_function . "'" : "";
-            $query .= ");";
+            $query .= ', NOW()';
+            $query .= isset($set_function) ? ", '" . $set_function . "'" : '';
+            $query .= isset($use_function) ? ", '" . $use_function . "'" : '';
+            $query .= ');';
 
             // Execute.
             xtc_db_query($query);
@@ -655,7 +640,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $keys = $this->keys();
 
             foreach ($keys as $key) {
-                xtc_db_query("DELETE FROM " . TABLE_CONFIGURATION . " WHERE configuration_key = '$key'");
+                xtc_db_query('DELETE FROM ' . TABLE_CONFIGURATION . " WHERE configuration_key = '$key'");
             }
         }
 
@@ -718,7 +703,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function _guess_order_id()
         {
-            $order_query = xtc_db_query("SELECT MAX(orders_id) FROM " . TABLE_ORDERS);
+            $order_query = xtc_db_query('SELECT MAX(orders_id) FROM ' . TABLE_ORDERS);
             $order_data = xtc_db_fetch_array($order_query);
             $order_id = reset($order_data);
 
@@ -738,7 +723,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $customerId = $lyraMultiResponse->get('cust_id');
             $transId = $lyraMultiResponse->get('trans_id');
 
-            $query = xtc_db_query("SELECT * FROM " . TABLE_ORDERS .
+            $query = xtc_db_query('SELECT * FROM ' . TABLE_ORDERS .
                 " WHERE orders_id >= $orderId" .
                 " AND customers_id = $customerId" .
                 " AND cc_owner LIKE '%Transaction: " . $transId . "'");

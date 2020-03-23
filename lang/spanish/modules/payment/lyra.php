@@ -11,8 +11,8 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Pago standard");
-define('MODULE_PAYMENT_LYRA_SHORT_TITLE', "Pago con tarjeta de crédito");
+define('MODULE_PAYMENT_LYRA_BACK_TITLE', "Lyra Collect - Pago standard");
+define('MODULE_PAYMENT_LYRA_FRONT_TITLE', "Pago con tarjeta de crédito");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
 define('MODULE_PAYMENT_LYRA_STATUS_TITLE', "Activación");
@@ -73,11 +73,3 @@ define('MODULE_PAYMENT_LYRA_RETURN_MODE_TITLE', "Modo de retorno");
 define('MODULE_PAYMENT_LYRA_RETURN_MODE_DESC', "Método que se usará para transmitir el resultado del pago de la página de pago a su tienda.");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_TITLE', "Order Status");
 define('MODULE_PAYMENT_LYRA_ORDER_STATUS_DESC', "Defines the status of orders paid with this payment mode.");
-
-## ADMINISTRATION INTERFACE - MISC CONSTANTS ##
-define('MODULE_PAYMENT_LYRA_VALUE_False', "Deshabilitado");
-define('MODULE_PAYMENT_LYRA_VALUE_True', "Habilitado");
-
-define('MODULE_PAYMENT_LYRA_VALIDATION_DEFAULT', "Configuración del Back Office Lyra Expert");
-define('MODULE_PAYMENT_LYRA_VALIDATION_0', "Automático");
-define('MODULE_PAYMENT_LYRA_VALIDATION_1', "Manual");
