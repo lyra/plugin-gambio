@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Lyra Network.
- * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
+ * This file is part of Lyra Collect plugin for Gambio. See COPYING.md for license details.
  *
  * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
@@ -11,7 +11,7 @@
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_tools.php');
 
 if (lyra_tools::$lyra_plugin_features['multi']) {
-    // Include Lyra Collect API class.
+    // Include payment gateway API classes.
     require_once (DIR_FS_CATALOG . 'inc/xtc_output_warning.inc.php');
     require_once (DIR_FS_CATALOG . 'includes/classes/lyra_api.php');
     require_once (DIR_FS_CATALOG . 'includes/classes/lyra_request.php');
@@ -25,7 +25,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
     include_once(DIR_FS_CATALOG . "lang/$language/modules/payment/lyra_multi.php");
 
     /**
-     * Main class implementing Lyra Collect multiple payment module.
+     * Main class implementing multiple payment gateway module.
      */
     class lyra_multi
     {

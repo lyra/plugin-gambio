@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Lyra Network.
- * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
+ * This file is part of Lyra Collect plugin for Gambio. See COPYING.md for license details.
  *
  * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
@@ -23,7 +23,7 @@ class lyra_tools
     private static $SUPPORT_EMAIL = 'support-ecommerce@lyra-collect.com';
 
     private static $CMS_IDENTIFIER = 'Gambio_3.x';
-    private static $PLUGIN_VERSION = '2.0.0';
+    private static $PLUGIN_VERSION = '2.0.0-beta1';
     private static $GATEWAY_VERSION = 'V2';
 
     public static $lyra_plugin_features = array(

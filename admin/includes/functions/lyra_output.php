@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Lyra Network.
- * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
+ * This file is part of Lyra Collect plugin for Gambio. See COPYING.md for license details.
  *
  * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
@@ -9,11 +9,11 @@
  */
 
 /**
- * General functions to draw Lyra Collect configuration parameters.
+ * General functions to draw configuration parameters.
  */
 global $lyra_supported_languages, $lyra_supported_cards;
 
-// Load Lyra Collect payment API.
+// Load gateway payment API.
 $lyra_supported_languages = LyraApi::getSupportedLanguages();
 $lyra_supported_cards = LyraApi::getSupportedCardTypes();
 

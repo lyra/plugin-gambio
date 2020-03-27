@@ -1,7 +1,7 @@
 <?php
 /**
  * Copyright © Lyra Network.
- * This file is part of Lyra plugin for Gambio. See COPYING.md for license details.
+ * This file is part of Lyra Collect plugin for Gambio. See COPYING.md for license details.
  *
  * @author    Lyra Network (https://www.lyra.com/)
  * @copyright Lyra Network
@@ -22,7 +22,7 @@ $language = $_SESSION['language'];
 include_once (DIR_FS_CATALOG . "lang/$language/modules/payment/lyra.php");
 
 /**
- * Main class implementing Lyra Collect payment module.
+ * Main class implementing payment gateway module.
  */
 class lyra
 {
