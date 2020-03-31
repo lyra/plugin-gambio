@@ -69,7 +69,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
             $this->code = 'lyra_multi';
 
             // Initialize title.
-            $this->title = MODULE_PAYMENT_LYRA_MULTI_BACK_TITLE;
+            $this->title = MODULE_PAYMENT_LYRA_MULTI_TEXT_TITLE;
 
             // Initialize description.
             $this->description  = lyra_tools::$lyra_plugin_features['restrictmulti'] ?
@@ -267,7 +267,7 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
          */
         function process_button()
         {
-            global $order, $xtPrice ;
+            global $order, $xtPrice, $gx_version;
 
             // Load Lyra Collect payment API.
             $lyraMultiRequest = new LyraRequest();
@@ -319,18 +319,15 @@ if (lyra_tools::$lyra_plugin_features['multi']) {
                 $threedsMpi = '2';
             }
 
-            // Other parameters.
-            $version = '';
-            $coo_versioninfo = MainFactory::create_object('VersionInfo');
-            foreach ($coo_versioninfo->get_shop_versioninfo() as $key => $value) {
-                $version = $key;
-            }
+            // CMS version.
+            include(DIR_FS_CATALOG . 'release_info.php');
 
+            // Other parameters.
             $data = array(
                 // Order info.
                 'amount' => $lyraCurrency->convertAmountToInteger($total),
                 'order_id' => $this->_guess_order_id(),
-                'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $version . '/' . PHP_VERSION,
+                'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $gx_version . '/' . PHP_VERSION,
                 'order_info' => 'session_id=' . session_id() . '&use_cookies=' . ini_get('session.use_cookies') . '&session_cache_limiter=' . session_cache_limiter(),
 
                 // Misc data.

@@ -8,7 +8,7 @@
  * @license   http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU General Public License (GPL v2)
  */
 
-// Include BANKNAME API class.
+// Include payment gateway API classes.
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_api.php');
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_request.php');
 require_once (DIR_FS_CATALOG . 'includes/classes/lyra_response.php');
@@ -66,7 +66,7 @@ class lyra
         $this->code = 'lyra';
 
         // Initialize title
-        $this->title = MODULE_PAYMENT_LYRA_BACK_TITLE;
+        $this->title = MODULE_PAYMENT_LYRA_TEXT_TITLE;
 
         // Initialize description.
         $this->description  = '';
@@ -199,7 +199,7 @@ class lyra
      */
     function process_button()
     {
-        global $order, $xtPrice;
+        global $order, $xtPrice, $gx_version;
 
         // Load Lyra Collect payment API.
         $lyraRequest = new LyraRequest();
@@ -251,18 +251,15 @@ class lyra
             $threedsMpi = '2';
         }
 
-        // Other parameters.
-        $version = '';
-        $coo_versioninfo = MainFactory::create_object('VersionInfo');
-        foreach ($coo_versioninfo->get_shop_versioninfo() as $key => $value) {
-            $version = $key;
-        }
+        // CMS version.
+        include(DIR_FS_CATALOG . 'release_info.php');
 
+        // Other parameters.
         $data = array(
             // Order info.
             'amount' => $lyraCurrency->convertAmountToInteger($total),
             'order_id' => $this->_guess_order_id(),
-            'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $version . '/' . PHP_VERSION,
+            'contrib' => lyra_tools::getDefault('CMS_IDENTIFIER') . '_' . lyra_tools::getDefault('PLUGIN_VERSION') . '/' . $gx_version . '/' . PHP_VERSION,
             'order_info' => 'session_id=' . session_id() . '&use_cookies=' . ini_get('session.use_cookies') . '&session_cache_limiter=' . session_cache_limiter(),
 
             // Misc data.

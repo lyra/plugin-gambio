@@ -11,7 +11,7 @@
 include_once 'lyra_common.php';
 
 ## CATALOG MESSAGES ##
-define('MODULE_PAYMENT_LYRA_BACK_TITLE', "Lyra Collect - Paiement standard");
+define('MODULE_PAYMENT_LYRA_TEXT_TITLE', "Lyra Collect - Paiement standard");
 define('MODULE_PAYMENT_LYRA_FRONT_TITLE', "Paiement par carte bancaire");
 
 ## ADMINISTRATION INTERFACE - MODULE SETTINGS ##
