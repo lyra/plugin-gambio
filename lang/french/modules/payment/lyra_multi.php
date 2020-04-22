@@ -34,7 +34,7 @@ define('MODULE_PAYMENT_LYRA_MULTI_KEY_PROD_DESC', "Clé fournie par Lyra Collect
 define('MODULE_PAYMENT_LYRA_MULTI_CTX_MODE_TITLE', "Mode");
 define('MODULE_PAYMENT_LYRA_MULTI_CTX_MODE_DESC', "Mode de fonctionnement du module.");
 define('MODULE_PAYMENT_LYRA_MULTI_SIGN_ALGO_TITLE', "Algorithme de signature");
-define('MODULE_PAYMENT_LYRA_SIGN_ALGO_DESC', "Algorithme utilisé pour calculer la signature du formulaire de paiement. L'algorithme sélectionné doit être le même que celui configuré sur le Back Office Lyra Expert." . (! lyra_tools::$lyra_plugin_features['shatwo'] ? "<br /><b>Le HMAC-SHA-256 ne doit pas être activé si celui-ci n'est pas encore disponible depuis le Back Office Lyra Expert, la fonctionnalité sera disponible prochainement.</b>" : ''));
+define('MODULE_PAYMENT_LYRA_MULTI_SIGN_ALGO_DESC', "Algorithme utilisé pour calculer la signature du formulaire de paiement. L'algorithme sélectionné doit être le même que celui configuré sur le Back Office Lyra Expert." . (! lyra_tools::$lyra_plugin_features['shatwo'] ? "<br /><b>Le HMAC-SHA-256 ne doit pas être activé si celui-ci n'est pas encore disponible depuis le Back Office Lyra Expert, la fonctionnalité sera disponible prochainement.</b>" : ''));
 define('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL_TITLE', "URL de la page de paiement");
 define('MODULE_PAYMENT_LYRA_MULTI_PLATFORM_URL_DESC', "URL vers laquelle l'acheteur sera redirigé pour le paiement.");
 
@@ -75,17 +75,17 @@ define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_TITLE', "Statut des commandes");
 define('MODULE_PAYMENT_LYRA_MULTI_ORDER_STATUS_DESC', "Définir le statut des commandes payées par ce mode de paiement.");
 
 ## ADMINISTRATION INTERFACE - MULTI PAYMENT SETTINGS ##
-define('MODULE_PAYMENT_LYRA_OPTIONS_TITLE', "Options de paiement");
-define('MODULE_PAYMENT_LYRA_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1ère échéance:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
-define('MODULE_PAYMENT_LYRA_OPTIONS_LABEL', "Libellé");
-define('MODULE_PAYMENT_LYRA_OPTIONS_MIN_AMOUNT', "Montant min");
-define('MODULE_PAYMENT_LYRA_OPTIONS_MAX_AMOUNT', "Montant max");
-define('MODULE_PAYMENT_LYRA_OPTIONS_CONTRACT', "Contrat");
-define('MODULE_PAYMENT_LYRA_OPTIONS_COUNT', "Nombre");
-define('MODULE_PAYMENT_LYRA_OPTIONS_PERIOD', "Période");
-define('MODULE_PAYMENT_LYRA_OPTIONS_FIRST', "1ère échéance");
-define('MODULE_PAYMENT_LYRA_OPTIONS_ADD', "Ajouter");
-define('MODULE_PAYMENT_LYRA_OPTIONS_DELETE', "Supprimer");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_TITLE', "Options de paiement");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DESC', "Cliquer sur le bouton \"Ajouter\" pour configurer une ou plusieurs options de paiement.<br /><b>Libellé:</b> Texte décrivant l'option de paiement multiple.<br /><b>Montant min:</b> Montant minimum pour proposer l'option.<br /><b>Montant max:</b> Montant maximum pour proposer l'option.<br /><b>Contrat:</b> ID du contrat à utiliser avec l'option.<br /><b>Nombre:</b> Nombre total d'échéances.<br /><b>Période:</b> Délai entre deux échéances (en jours).<br /><b>1ère échéance:</b> Montant de la première échéance en pourcentage du total. Si vide, toutes les échéances auront le même montant.<br /><b>N'oubliez pas de cliquer sur le bouton \"Mise à jour\" afin de sauvegarder vos modifications.</b>");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL', "Libellé");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT', "Montant min");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT', "Montant max");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT', "Contrat");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT', "Nombre");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD', "Période");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST', "1ère échéance");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD', "Ajouter");
+define('MODULE_PAYMENT_LYRA_MULTI_OPTIONS_DELETE', "Supprimer");
 
 define('MODULE_PAYMENT_LYRA_MULTI_ONE_OPTION', "Votre option de paiement");
 define('MODULE_PAYMENT_LYRA_MULTI_MANY_OPTIONS', "Choisissez votre moyen de paiement");
