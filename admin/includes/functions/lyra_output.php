@@ -102,31 +102,31 @@ function lyra_get_multi_options($value)
         return '';
     }
 
-    $field = '<br /><table cellpadding="10" cellspacing="5" class="infoBoxContent">';
+    $field = '<div style="overflow-x: visible; width: 194px;"><table class="infoBoxContent">';
     $field .= '<thead><tr>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD . '</th>';
-    $field .= '<th style="padding: 0px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD . '</th>';
+    $field .= '<th style="padding: 0 5px;">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST . '</th>';
     $field .= '</tr></thead>';
 
     $field .= '<tbody>';
-    foreach ($options as $code => $option) {
+    foreach ($options as $option) {
         $field .= '<tr>';
-        $field .= '<td style="padding: 0px;">' . $option['label'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['min_amount'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['max_amount'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['contract'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['count'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['period'] . '</td>';
-        $field .= '<td style="padding: 0px;">' . $option['first'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['label'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['min_amount'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['max_amount'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['contract'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['count'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['period'] . '</td>';
+        $field .= '<td style="padding: 0 5px;">' . $option['first'] . '</td>';
         $field .= '</tr>';
     }
 
-    $field .= '</tbody></table>';
+    $field .= '</tbody></table><div>';
 
     return $field;
 }
@@ -229,7 +229,7 @@ function lyra_cfg_draw_pull_down_langs($value = '', $name)
     }
 
     $field = '<select name="' . $name . '">';
-    foreach ($lyra_supported_languages as $key => $label) {
+    foreach (array_keys($lyra_supported_languages) as $key) {
         $field .= '<option value="' . $key . '"';
         if ($value === $key) {
             $field .= ' selected="selected"';
@@ -255,7 +255,7 @@ function lyra_cfg_draw_pull_down_multi_langs($value = '', $name)
     $langs = empty($value) ? array() : explode(';', $value);
 
     $field = '<select style="height: initial;" size="5" name="' . lyra_output_string($name) . '" multiple="multiple" onChange="JavaScript:lyraProcessLangs()">';
-    foreach ($lyra_supported_languages as $key => $label) {
+    foreach (array_keys($lyra_supported_languages) as $key) {
         $field .= '<option value="' . $key . '"';
         if (in_array($key, $langs)) {
             $field .= ' selected="selected"';
@@ -357,23 +357,23 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
     $options = empty($value) ? array() : json_decode($value, true);
 
     $field = '<input id="' . $name . '_btn" class="' . $name . '_btn"' . (! empty($options) ? ' style="display: none;"' : '') . ' type="button" value="' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD . '" />';
-    $field .= '<br /><div style="overflow-x: scroll; overflow-y: visible; width: 400px;"><table id="' . $name . '_table"' . (empty($options) ? ' style="display: none;"' : '') . ' cellpadding="10" cellspacing="0" class="infoBoxContent">';
+    $field .= '<div style="overflow-x: visible; width: 194px;"><table id="' . $name . '_table"' . (empty($options) ? ' style="display: none;"' : '') . ' class="infoBoxContent">';
 
     $field .= '<thead><tr>';
-    $field .= '<th style="padding: 0px;" class="label">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL . '</th>';
-    $field .= '<th style="padding: 0px;" class="min_amount">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT . '</th>';
-    $field .= '<th style="padding: 0px;" class="max_amount">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT . '</th>';
-    $field .= '<th style="padding: 0px;" class="contract">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT . '</th>';
-    $field .= '<th style="padding: 0px;" class="count">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT . '</th>';
-    $field .= '<th style="padding: 0px;" class="period">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD . '</th>';
-    $field .= '<th style="padding: 0px;" class="first">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST . '</th>';
-    $field .= '<th style="padding: 0px;"></th>';
+    $field .= '<th style="padding: 0 5px;" class="label">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_LABEL . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="min_amount">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MIN_AMOUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="max_amount">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_MAX_AMOUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="contract">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_CONTRACT . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="count">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_COUNT . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="period">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_PERIOD . '</th>';
+    $field .= '<th style="padding: 0 5px;" class="first">' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_FIRST . '</th>';
+    $field .= '<th style="padding: 0 5px;"></th>';
     $field .= '</tr></thead>';
 
     $field .= '<tbody>';
     $field .= '<tr id="' . $name . '_add">
                   <td colspan="7"></td>
-                <td style="padding: 0px;"><input class="' . $name . '_btn" type="button" value="' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD . '" /></td>
+                <td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" class="' . $name . '_btn" type="button" value="' . MODULE_PAYMENT_LYRA_MULTI_OPTIONS_ADD . '" /></td>
               </tr>';
     $field .= '</tbody></table></div>';
 
@@ -473,14 +473,14 @@ function lyra_cfg_draw_table_multi_options($value = '', $name)
             var inputPrefix = name + '[' + key + ']';
 
             var optionLine = '<tr id="' + name + '_line_' + key + '">';
-            optionLine += '<td style="padding: 0px;"><input style="width: 150px;" name="' + inputPrefix + '[label]" type="text" value="' + record['label'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 75px;" name="' + inputPrefix + '[min_amount]" type="text" value="' + record['min_amount'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 75px;" name="' + inputPrefix + '[max_amount]" type="text" value="' + record['max_amount'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 65px;" name="' + inputPrefix + '[contract]" type="text" value="' + record['contract'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 65px;" name="' + inputPrefix + '[count]" type="text" value="' + record['count'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 65px;" name="' + inputPrefix + '[period]" type="text" value="' + record['period'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input style="width: 75px;" name="' + inputPrefix + '[first]" type="text" value="' + record['first'] + '" /></td>';
-            optionLine += '<td style="padding: 0px;"><input type="button" value="$deleteTxt" onclick="javascript: lyraDeleteOption(\'' + name + '\', \'' + key + '\');" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: 100px;" name="' + inputPrefix + '[label]" type="text" value="' + record['label'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[min_amount]" type="text" value="' + record['min_amount'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[max_amount]" type="text" value="' + record['max_amount'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[contract]" type="text" value="' + record['contract'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[count]" type="text" value="' + record['count'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[period]" type="text" value="' + record['period'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" name="' + inputPrefix + '[first]" type="text" value="' + record['first'] + '" /></td>';
+            optionLine += '<td style="padding: 0 5px;"><input style="margin: 0 0 2px 2px; min-width: unset;" type="button" value="$deleteTxt" onclick="javascript: lyraDeleteOption(\'' + name + '\', \'' + key + '\');" /></td>';
             optionLine += '</tr>';
 
             jQuery(optionLine).insertBefore('#' + name + '_add');
